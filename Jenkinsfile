@@ -61,7 +61,7 @@ pipeline {
 //          sh "git checkout master"
                 sh "git checkout ${env.BRANCH_NAME}"
 
-//                sh "git config remote.origin.url https://github.com/kevinstl/cryptocurrency-services-api-gateway.git"
+//                sh "git config remote.origin.url https://github.com/kevinstl/masternodes-online-supplement-api.git"
 //                sh "git config --global credential.helper store"
 //                sh "jx step git credentials"
 //                sh "git pull origin ${env.BRANCH_NAME}"
@@ -188,7 +188,7 @@ pipeline {
 
 //        container('jx-base') {
 //
-//          dir('charts/cryptocurrency-services-api-gateway') {
+//          dir('charts/masternodes-online-supplement-api') {
 //            sh "jx step changelog --version v\$(cat ../../VERSION)"
 //
 //            // release the helm chart
@@ -217,7 +217,7 @@ def deployLocal() {
         sh 'echo debug1'
 
         if (NEW_VERSION_LOCAL == 'true') {
-            dir('./charts/cryptocurrency-services-api-gateway') {
+            dir('./charts/masternodes-online-supplement-api') {
                 container('jx-base') {
                     sh 'jx step helm release'
                 }
@@ -230,7 +230,7 @@ def deployLocal() {
         dir(envProjectDir) {
             container('jx-base') {
                 sh 'cat ./requirements.yaml'
-                sh " ./scripts/replace-version.sh . ./requirements.yaml cryptocurrency-services-api-gateway \$(cat ../../VERSION)"
+                sh " ./scripts/replace-version.sh . ./requirements.yaml masternodes-online-supplement-api \$(cat ../../VERSION)"
                 sh " ./scripts/add-values-local.sh . ./values.yaml"
 
                 sh 'pwd'
@@ -238,7 +238,7 @@ def deployLocal() {
                 sh 'cat ./requirements.yaml'
                 sh 'jx step helm build'
 //                sh 'jx step helm apply --wait=false'
-                sh 'jx step helm apply -n cryptocurrency-services-api-gateway --wait=false'
+                sh 'jx step helm apply -n masternodes-online-supplement-api --wait=false'
             }
         }
     }
@@ -246,7 +246,7 @@ def deployLocal() {
 
 def promote( env ) {
     container('jx-base') {
-      dir('charts/cryptocurrency-services-api-gateway') {
+      dir('charts/masternodes-online-supplement-api') {
         sh "jx step changelog --version v\$(cat ../../VERSION)"
 
         // release the helm chart

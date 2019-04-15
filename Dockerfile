@@ -17,5 +17,5 @@ ENTRYPOINT ["./entrypoint.sh"]
 EXPOSE 8080 5701/udp
 
 #ADD *.war app.war
-ADD ./target/cryptocurrency-services-api-gateway*.war app.war
+ADD ./target/masternodes-online-supplement-api*.war app.war
 
