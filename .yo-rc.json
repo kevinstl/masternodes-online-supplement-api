@@ -1,0 +1,42 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.cryptocurrencyservices.masternodessuplement.api",
+      "nativeLanguage": "en"
+    },
+    "jhipsterVersion": "5.8.2",
+    "applicationType": "microservice",
+    "baseName": "MasternodesOnlineSupplementeApi",
+    "packageName": "com.cryptocurrencyservices.masternodessuplement.api",
+    "packageFolder": "com/cryptocurrencyservices/masternodessuplement/api",
+    "serverPort": "8081",
+    "authenticationType": "jwt",
+    "cacheProvider": "hazelcast",
+    "enableHibernateCache": false,
+    "websocket": false,
+    "databaseType": "mongodb",
+    "devDatabaseType": "mongodb",
+    "prodDatabaseType": "mongodb",
+    "searchEngine": "elasticsearch",
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "maven",
+    "enableSwaggerCodegen": true,
+    "jwtSecretKey": "NjJmYzZhMmRkZGIyZmUxZDQ0ZGQ4YzdkYzQ2ZWQ3MGRhYTY4ZWViNTE2Mzc4Mzg5OTQzOGIxMzNkYzFmOTA1NTJhZmQ0MmY4MDljMTQyMTc2YTQ4M2ZjMTRjMGIwMDU0NzgwNDRhMGEyNjBhNTA4MDY4MWM2ZTU3MTFmY2ZkMWU=",
+    "testFrameworks": [
+      "cucumber"
+    ],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": true,
+    "clientPackageManager": "npm",
+    "nativeLanguage": "en",
+    "languages": [
+      "en"
+    ],
+    "skipClient": true,
+    "skipUserManagement": true
+  }
+}

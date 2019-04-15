@@ -1,0 +1,30 @@
+apiVersion: skaffold/v1beta2
+kind: Config
+build:
+  artifacts:
+  - image: changeme
+    context: .
+    docker: {}
+  tagPolicy:
+    envTemplate:
+      template: '{{.DOCKER_REGISTRY}}/kevinstl/masternodes-online-supplement-api:{{.VERSION}}'
+  local: {}
+deploy:
+  kubectl: {}
+profiles:
+- name: dev
+  build:
+    artifacts:
+    - docker: {}
+    tagPolicy:
+      envTemplate:
+        template: '{{.DOCKER_REGISTRY}}/kevinstl/masternodes-online-supplement-api:{{.DIGEST_HEX}}'
+    local: {}
+  deploy:
+    helm:
+      releases:
+      - name: masternodes-online-supplement-api
+        chartPath: charts/masternodes-online-supplement-api
+        setValueTemplates:
+          image.repository: '{{.DOCKER_REGISTRY}}/kevinstl/masternodes-online-supplement-api'
+          image.tag: '{{.DIGEST_HEX}}'
