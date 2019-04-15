@@ -38,7 +38,7 @@ public class AsyncConfiguration implements AsyncConfigurer, SchedulingConfigurer
         executor.setCorePoolSize(jHipsterProperties.getAsync().getCorePoolSize());
         executor.setMaxPoolSize(jHipsterProperties.getAsync().getMaxPoolSize());
         executor.setQueueCapacity(jHipsterProperties.getAsync().getQueueCapacity());
-        executor.setThreadNamePrefix("masternodes-online-supplemente-api-Executor-");
+        executor.setThreadNamePrefix("masternodes-online-supplement-api-Executor-");
         return new ExceptionHandlingAsyncTaskExecutor(executor);
     }
 
@@ -46,7 +46,7 @@ public class AsyncConfiguration implements AsyncConfigurer, SchedulingConfigurer
     public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
         return new SimpleAsyncUncaughtExceptionHandler();
     }
-    
+
     @Override
     public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {
         taskRegistrar.setScheduler(scheduledTaskExecutor());

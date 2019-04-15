@@ -1,6 +1,6 @@
 package com.cryptocurrencyservices.masternodessuplement.api.cucumber;
 
-import com.cryptocurrencyservices.masternodessuplement.api.MasternodesOnlineSupplementeApiApp;
+import com.cryptocurrencyservices.masternodessuplement.api.MasternodesOnlineSupplementApiApp;
 import cucumber.api.java.Before;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
@@ -8,7 +8,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 @SpringBootTest
 @WebAppConfiguration
-@ContextConfiguration(classes = MasternodesOnlineSupplementeApiApp.class)
+@ContextConfiguration(classes = MasternodesOnlineSupplementApiApp.class)
 public class CucumberContextConfiguration {
 
     @Before

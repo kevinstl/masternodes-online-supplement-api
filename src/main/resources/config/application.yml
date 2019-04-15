@@ -24,8 +24,8 @@ eureka:
         instance-info-replication-interval-seconds: 10
         registry-fetch-interval-seconds: 10
     instance:
-        appname: masternodesonlinesupplementeapi
-        instanceId: masternodesonlinesupplementeapi:${spring.application.instance-id:${random.value}}
+        appname: MasternodesOnlineSupplementApi
+        instanceId: MasternodesOnlineSupplementApi:${spring.application.instance-id:${random.value}}
         lease-renewal-interval-in-seconds: 5
         lease-expiration-duration-in-seconds: 10
         status-page-url-path: ${management.endpoints.web.base-path}/info
@@ -110,7 +110,7 @@ spring:
     autoconfigure:
         exclude: org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchAutoConfiguration,org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchDataAutoConfiguration
     application:
-        name: MasternodesOnlineSupplementeApi
+        name: MasternodesOnlineSupplementApi
     messages:
         basename: i18n/messages
     mvc:
@@ -150,11 +150,11 @@ jhipster:
         #allow-credentials: true
         #max-age: 1800
     mail:
-        from: MasternodesOnlineSupplementeApi@localhost
+        from: MasternodesOnlineSupplementApi@localhost
     swagger:
         default-include-pattern: /api/.*
-        title: MasternodesOnlineSupplementeApi API
-        description: MasternodesOnlineSupplementeApi API documentation
+        title: MasternodesOnlineSupplementApi API
+        description: MasternodesOnlineSupplementApi API documentation
         version: 0.0.1
         terms-of-service-url:
         contact-name:

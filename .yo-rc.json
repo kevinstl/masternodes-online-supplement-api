@@ -6,7 +6,7 @@
     },
     "jhipsterVersion": "5.8.2",
     "applicationType": "microservice",
-    "baseName": "MasternodesOnlineSupplementeApi",
+    "baseName": "MasternodesOnlineSupplementApi",
     "packageName": "com.cryptocurrencyservices.masternodessuplement.api",
     "packageFolder": "com/cryptocurrencyservices/masternodessuplement/api",
     "serverPort": "8081",

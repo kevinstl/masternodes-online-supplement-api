@@ -1,7 +1,7 @@
 {
-    "name": "masternodes-online-supplemente-api",
+    "name": "masternodes-online-supplement-api",
     "version": "0.0.0",
-    "description": "Description for MasternodesOnlineSupplementeApi",
+    "description": "Description for MasternodesOnlineSupplementApi",
     "private": true,
     "license": "UNLICENSED",
     "cacheDirectories": [

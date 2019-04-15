@@ -1,6 +1,6 @@
 package com.cryptocurrencyservices.masternodessuplement.api.web.rest.errors;
 
-import com.cryptocurrencyservices.masternodessuplement.api.MasternodesOnlineSupplementeApiApp;
+import com.cryptocurrencyservices.masternodessuplement.api.MasternodesOnlineSupplementApiApp;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,7 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see ExceptionTranslator
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = MasternodesOnlineSupplementeApiApp.class)
+@SpringBootTest(classes = MasternodesOnlineSupplementApiApp.class)
 public class ExceptionTranslatorIntTest {
 
     @Autowired

@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.cryptocurrencyservices.masternodessuplement.api</groupId>
-    <artifactId>masternodes-online-supplemente-api</artifactId>
+    <artifactId>masternodes-online-supplement-api</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>Masternodes Online Supplemente Api</name>
@@ -436,7 +436,7 @@
                 <artifactId>openapi-generator-maven-plugin</artifactId>
             </plugin>
             <!-- jhipster-needle-maven-add-plugin -->
-        
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-deploy-plugin</artifactId>
@@ -508,7 +508,7 @@
                           <image>openjdk:8-jre-alpine</image>
                       </from>
                       <to>
-                          <image>masternodesonlinesupplementeapi:latest</image>
+                          <image>MasternodesOnlineSupplementApi:latest</image>
                       </to>
                       <container>
                           <entrypoint>

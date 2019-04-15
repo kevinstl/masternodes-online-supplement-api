@@ -23,18 +23,18 @@ import java.util.Collection;
 @SpringBootApplication
 @EnableConfigurationProperties({ApplicationProperties.class})
 @EnableDiscoveryClient
-public class MasternodesOnlineSupplementeApiApp {
+public class MasternodesOnlineSupplementApiApp {
 
-    private static final Logger log = LoggerFactory.getLogger(MasternodesOnlineSupplementeApiApp.class);
+    private static final Logger log = LoggerFactory.getLogger(MasternodesOnlineSupplementApiApp.class);
 
     private final Environment env;
 
-    public MasternodesOnlineSupplementeApiApp(Environment env) {
+    public MasternodesOnlineSupplementApiApp(Environment env) {
         this.env = env;
     }
 
     /**
-     * Initializes MasternodesOnlineSupplementeApi.
+     * Initializes MasternodesOnlineSupplementApi.
      * <p>
      * Spring profiles can be configured with a program argument --spring.profiles.active=your-active-profile
      * <p>
@@ -59,7 +59,7 @@ public class MasternodesOnlineSupplementeApiApp {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        SpringApplication app = new SpringApplication(MasternodesOnlineSupplementeApiApp.class);
+        SpringApplication app = new SpringApplication(MasternodesOnlineSupplementApiApp.class);
         DefaultProfileUtil.addDefaultProfile(app);
         Environment env = app.run(args).getEnvironment();
         logApplicationStartup(env);

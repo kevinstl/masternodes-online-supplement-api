@@ -1,4 +1,4 @@
-# MasternodesOnlineSupplementeApi
+# MasternodesOnlineSupplementApi
 
 This application was generated using JHipster 5.8.2, you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v5.8.2](https://www.jhipster.tech/documentation-archive/v5.8.2).
 
@@ -30,7 +30,7 @@ Refer to [Doing API-First development][] for more details.
 
 ## Building for production
 
-To optimize the MasternodesOnlineSupplementeApi application for production, run:
+To optimize the MasternodesOnlineSupplementApi application for production, run:
 
     ./mvnw -Pprod clean package
 

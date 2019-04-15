@@ -44,7 +44,7 @@ spring:
     data:
         mongodb:
             uri: mongodb://localhost:27017
-            database: MasternodesOnlineSupplementeApi
+            database: MasternodesOnlineSupplementApi
         elasticsearch:
             properties:
                 path:
@@ -106,7 +106,7 @@ jhipster:
                 token-validity-in-seconds: 86400
                 token-validity-in-seconds-for-remember-me: 2592000
     mail: # specific JHipster mail property, for standard properties see MailProperties
-        from: MasternodesOnlineSupplementeApi@localhost
+        from: MasternodesOnlineSupplementApi@localhost
         base-url: http://127.0.0.1:8081
     metrics:
         logs: # Reports metrics in the logs

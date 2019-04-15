@@ -17,19 +17,19 @@ eureka:
     client:
         enabled: false
     instance:
-        appname: MasternodesOnlineSupplementeApi
-        instanceId: MasternodesOnlineSupplementeApi:${spring.application.instance-id:${random.value}}
+        appname: MasternodesOnlineSupplementApi
+        instanceId: MasternodesOnlineSupplementApi:${spring.application.instance-id:${random.value}}
 
 spring:
     application:
-        name: MasternodesOnlineSupplementeApi
+        name: MasternodesOnlineSupplementApi
     cache:
         type: simple
     data:
         mongodb:
             host: localhost
             port: 0
-            database: MasternodesOnlineSupplementeApi
+            database: MasternodesOnlineSupplementApi
         elasticsearch:
             properties:
                 path:
