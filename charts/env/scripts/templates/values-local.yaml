@@ -1,7 +1,0 @@
-masternodes-online-supplement-api:
-  service:
-    type: NodePort
-    nodePort: 30800
-
-
-
