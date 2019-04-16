@@ -85,7 +85,15 @@ pipeline {
       }
       steps {
         container('jx-base') {
+
+            sh 'cat ./charts/masternodes-online-supplement-api/Chart.yaml'
+            sh 'cat ./charts/masternodes-online-supplement-api/values.yaml'
+
           sh "jx step tag --charts-value-repository $DOCKER_REGISTRY/$ORG/$APP_NAME --version \$(cat VERSION)"
+
+            sh 'cat ./charts/masternodes-online-supplement-api/Chart.yaml'
+            sh 'cat ./charts/masternodes-online-supplement-api/values.yaml'
+
         }
       }
     }
