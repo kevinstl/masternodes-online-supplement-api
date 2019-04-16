@@ -15,16 +15,18 @@
 
 logging:
     level:
-        ROOT: INFO
-        com.cryptocurrencyservices.masternodessuplement.api: INFO
-        io.github.jhipster: INFO
+        ROOT: DEBUG
+        com.cryptocurrencyservices.masternodessuplement.api: DEBUG
+        io.github.jhipster: DEBUG
 
 eureka:
     instance:
         prefer-ip-address: true
     client:
         service-url:
-            defaultZone: http://admin:${jhipster.registry.password}@localhost:8761/eureka/
+#            defaultZone: http://admin:${jhipster.registry.password}@localhost:8761/eureka/
+#            defaultZone: http://admin:${jhipster.registry.password}@jhipster-registry-service.:8761/eureka/
+            defaultZone: http://admin:${jhipster.registry.password}@jhipster-registry-service:8761/eureka/
 
 spring:
     devtools:
@@ -34,10 +36,14 @@ spring:
             enabled: false
     data:
         mongodb:
-            uri: mongodb://localhost:27017
-            database: MasternodesOnlineSupplementApi
+#            uri: mongodb://localhost:27017
+#            uri: mongodb://${MONGO_HOST}:${MONGO_PORT}
+            uri: mongodb://${SPRING_DATA_MONGODB_URI}
+#            database: MasternodesOnlineSupplementApi
+            database: ${MONGO_DATABASE}
         jest:
-            uri: http://localhost:9200
+#            uri: http://localhost:9200
+            uri: http://elastisearch-service:9200
     mail:
         host: localhost
         port: 25
