@@ -236,7 +236,7 @@ def deployLocal() {
 
         sh 'echo debug3'
 
-        def envProjectDir = "./charts/env-local"
+        def envProjectDir = "./build/env-local"
         dir(envProjectDir) {
             container('jx-base') {
                 sh 'cat ./requirements.yaml'
