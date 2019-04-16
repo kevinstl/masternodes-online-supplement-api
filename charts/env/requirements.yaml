@@ -2,3 +2,11 @@ dependencies:
 - name: masternodes-online-supplement-api
   repository: http://jenkins-x-chartmuseum:8080
   version: 1.4
+- name: exposecontroller
+  version: 2.3.58
+  repository: http://chartmuseum.build.cd.jenkins-x.io
+  alias: expose
+- name: exposecontroller
+  version: 2.3.58
+  repository: http://chartmuseum.build.cd.jenkins-x.io
+  alias: cleanup
