@@ -16,7 +16,7 @@ knativeDeploy: false
 service:
   name: masternodes-online-supplement-api
 #  type: ClusterIP
-type: LoadBalancer
+  type: LoadBalancer
   appPort: 8081
   extAppPort: 80
   adminPort: 8081
