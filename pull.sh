@@ -12,7 +12,7 @@ then
 
 #    git checkout $branch
 
-    git pull origin $branch
+    git pull origin $branch || true
 
 fi
 
