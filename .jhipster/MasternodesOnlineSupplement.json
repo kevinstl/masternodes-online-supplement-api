@@ -1,0 +1,79 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "MasternodesOnlineSupplementApi",
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "coin",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "price",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "change",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "volume",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "marketcap",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "roi",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "nodes",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "numberRequired",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "minimumWorth",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "projectOrigin",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "masternodesOnlineUrl",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "githubUrl",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "githubCommits",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "createdAt",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "pushedAt",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "notes",
+            "fieldType": "String"
+        }
+    ],
+    "dto": "mapstruct",
+    "searchEngine": "elasticsearch",
+    "service": "serviceClass",
+    "entityTableName": "masternodes_online_supplement",
+    "databaseType": "mongodb",
+    "jpaMetamodelFiltering": false,
+    "pagination": "infinite-scroll",
+    "microserviceName": "MasternodesOnlineSupplementApi"
+}
