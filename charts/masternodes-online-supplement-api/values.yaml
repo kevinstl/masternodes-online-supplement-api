@@ -4,7 +4,7 @@
 replicaCount: 1
 image:
   repository: 10.102.128.249:5000/kevinstl/masternodes-online-supplement-api
-  tag: 0.0.43
+  tag: 0.0.44
   pullPolicy: IfNotPresent
 
 # define environment variables here as a map of key: value
