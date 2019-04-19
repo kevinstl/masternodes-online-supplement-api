@@ -26,6 +26,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.validation.Validator;
 
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.Collections;
 import java.util.List;
 
@@ -47,8 +49,53 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = MasternodesOnlineSupplementApiApp.class)
 public class MasternodesOnlineSupplementPublicResourceIntTest {
 
-    private static final String DEFAULT_TEST = "AAAAAAAAAA";
-    private static final String UPDATED_TEST = "BBBBBBBBBB";
+    private static final String DEFAULT_COIN = "AAAAAAAAAA";
+    private static final String UPDATED_COIN = "BBBBBBBBBB";
+
+    private static final String DEFAULT_PRICE = "AAAAAAAAAA";
+    private static final String UPDATED_PRICE = "BBBBBBBBBB";
+
+    private static final String DEFAULT_CHANGE = "AAAAAAAAAA";
+    private static final String UPDATED_CHANGE = "BBBBBBBBBB";
+
+    private static final String DEFAULT_VOLUME = "AAAAAAAAAA";
+    private static final String UPDATED_VOLUME = "BBBBBBBBBB";
+
+    private static final String DEFAULT_MARKETCAP = "AAAAAAAAAA";
+    private static final String UPDATED_MARKETCAP = "BBBBBBBBBB";
+
+    private static final String DEFAULT_ROI = "AAAAAAAAAA";
+    private static final String UPDATED_ROI = "BBBBBBBBBB";
+
+    private static final String DEFAULT_NODES = "AAAAAAAAAA";
+    private static final String UPDATED_NODES = "BBBBBBBBBB";
+
+    private static final String DEFAULT_NUMBER_REQUIRED = "AAAAAAAAAA";
+    private static final String UPDATED_NUMBER_REQUIRED = "BBBBBBBBBB";
+
+    private static final String DEFAULT_MINIMUM_WORTH = "AAAAAAAAAA";
+    private static final String UPDATED_MINIMUM_WORTH = "BBBBBBBBBB";
+
+    private static final String DEFAULT_PROJECT_ORIGIN = "AAAAAAAAAA";
+    private static final String UPDATED_PROJECT_ORIGIN = "BBBBBBBBBB";
+
+    private static final String DEFAULT_MASTERNODES_ONLINE_URL = "AAAAAAAAAA";
+    private static final String UPDATED_MASTERNODES_ONLINE_URL = "BBBBBBBBBB";
+
+    private static final String DEFAULT_GITHUB_URL = "AAAAAAAAAA";
+    private static final String UPDATED_GITHUB_URL = "BBBBBBBBBB";
+
+    private static final Integer DEFAULT_GITHUB_COMMITS = 1;
+    private static final Integer UPDATED_GITHUB_COMMITS = 2;
+
+    private static final Instant DEFAULT_CREATED_AT = Instant.ofEpochMilli(0L);
+    private static final Instant UPDATED_CREATED_AT = Instant.now().truncatedTo(ChronoUnit.MILLIS);
+
+    private static final Instant DEFAULT_PUSHED_AT = Instant.ofEpochMilli(0L);
+    private static final Instant UPDATED_PUSHED_AT = Instant.now().truncatedTo(ChronoUnit.MILLIS);
+
+    private static final String DEFAULT_NOTES = "AAAAAAAAAA";
+    private static final String UPDATED_NOTES = "BBBBBBBBBB";
 
     @Autowired
     private MasternodesOnlineSupplementPublicRepository masternodesOnlineSupplementPublicRepository;
@@ -103,7 +150,22 @@ public class MasternodesOnlineSupplementPublicResourceIntTest {
      */
     public static MasternodesOnlineSupplementPublic createEntity() {
         MasternodesOnlineSupplementPublic masternodesOnlineSupplementPublic = new MasternodesOnlineSupplementPublic()
-            .test(DEFAULT_TEST);
+            .coin(DEFAULT_COIN)
+            .price(DEFAULT_PRICE)
+            .change(DEFAULT_CHANGE)
+            .volume(DEFAULT_VOLUME)
+            .marketcap(DEFAULT_MARKETCAP)
+            .roi(DEFAULT_ROI)
+            .nodes(DEFAULT_NODES)
+            .numberRequired(DEFAULT_NUMBER_REQUIRED)
+            .minimumWorth(DEFAULT_MINIMUM_WORTH)
+            .projectOrigin(DEFAULT_PROJECT_ORIGIN)
+            .masternodesOnlineUrl(DEFAULT_MASTERNODES_ONLINE_URL)
+            .githubUrl(DEFAULT_GITHUB_URL)
+            .githubCommits(DEFAULT_GITHUB_COMMITS)
+            .createdAt(DEFAULT_CREATED_AT)
+            .pushedAt(DEFAULT_PUSHED_AT)
+            .notes(DEFAULT_NOTES);
         return masternodesOnlineSupplementPublic;
     }
 
@@ -128,7 +190,22 @@ public class MasternodesOnlineSupplementPublicResourceIntTest {
         List<MasternodesOnlineSupplementPublic> masternodesOnlineSupplementPublicList = masternodesOnlineSupplementPublicRepository.findAll();
         assertThat(masternodesOnlineSupplementPublicList).hasSize(databaseSizeBeforeCreate + 1);
         MasternodesOnlineSupplementPublic testMasternodesOnlineSupplementPublic = masternodesOnlineSupplementPublicList.get(masternodesOnlineSupplementPublicList.size() - 1);
-        assertThat(testMasternodesOnlineSupplementPublic.getTest()).isEqualTo(DEFAULT_TEST);
+        assertThat(testMasternodesOnlineSupplementPublic.getCoin()).isEqualTo(DEFAULT_COIN);
+        assertThat(testMasternodesOnlineSupplementPublic.getPrice()).isEqualTo(DEFAULT_PRICE);
+        assertThat(testMasternodesOnlineSupplementPublic.getChange()).isEqualTo(DEFAULT_CHANGE);
+        assertThat(testMasternodesOnlineSupplementPublic.getVolume()).isEqualTo(DEFAULT_VOLUME);
+        assertThat(testMasternodesOnlineSupplementPublic.getMarketcap()).isEqualTo(DEFAULT_MARKETCAP);
+        assertThat(testMasternodesOnlineSupplementPublic.getRoi()).isEqualTo(DEFAULT_ROI);
+        assertThat(testMasternodesOnlineSupplementPublic.getNodes()).isEqualTo(DEFAULT_NODES);
+        assertThat(testMasternodesOnlineSupplementPublic.getNumberRequired()).isEqualTo(DEFAULT_NUMBER_REQUIRED);
+        assertThat(testMasternodesOnlineSupplementPublic.getMinimumWorth()).isEqualTo(DEFAULT_MINIMUM_WORTH);
+        assertThat(testMasternodesOnlineSupplementPublic.getProjectOrigin()).isEqualTo(DEFAULT_PROJECT_ORIGIN);
+        assertThat(testMasternodesOnlineSupplementPublic.getMasternodesOnlineUrl()).isEqualTo(DEFAULT_MASTERNODES_ONLINE_URL);
+        assertThat(testMasternodesOnlineSupplementPublic.getGithubUrl()).isEqualTo(DEFAULT_GITHUB_URL);
+        assertThat(testMasternodesOnlineSupplementPublic.getGithubCommits()).isEqualTo(DEFAULT_GITHUB_COMMITS);
+        assertThat(testMasternodesOnlineSupplementPublic.getCreatedAt()).isEqualTo(DEFAULT_CREATED_AT);
+        assertThat(testMasternodesOnlineSupplementPublic.getPushedAt()).isEqualTo(DEFAULT_PUSHED_AT);
+        assertThat(testMasternodesOnlineSupplementPublic.getNotes()).isEqualTo(DEFAULT_NOTES);
 
         // Validate the MasternodesOnlineSupplementPublic in Elasticsearch
         verify(mockMasternodesOnlineSupplementPublicSearchRepository, times(1)).save(testMasternodesOnlineSupplementPublic);
@@ -166,7 +243,22 @@ public class MasternodesOnlineSupplementPublicResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(masternodesOnlineSupplementPublic.getId())))
-            .andExpect(jsonPath("$.[*].test").value(hasItem(DEFAULT_TEST.toString())));
+            .andExpect(jsonPath("$.[*].coin").value(hasItem(DEFAULT_COIN.toString())))
+            .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE.toString())))
+            .andExpect(jsonPath("$.[*].change").value(hasItem(DEFAULT_CHANGE.toString())))
+            .andExpect(jsonPath("$.[*].volume").value(hasItem(DEFAULT_VOLUME.toString())))
+            .andExpect(jsonPath("$.[*].marketcap").value(hasItem(DEFAULT_MARKETCAP.toString())))
+            .andExpect(jsonPath("$.[*].roi").value(hasItem(DEFAULT_ROI.toString())))
+            .andExpect(jsonPath("$.[*].nodes").value(hasItem(DEFAULT_NODES.toString())))
+            .andExpect(jsonPath("$.[*].numberRequired").value(hasItem(DEFAULT_NUMBER_REQUIRED.toString())))
+            .andExpect(jsonPath("$.[*].minimumWorth").value(hasItem(DEFAULT_MINIMUM_WORTH.toString())))
+            .andExpect(jsonPath("$.[*].projectOrigin").value(hasItem(DEFAULT_PROJECT_ORIGIN.toString())))
+            .andExpect(jsonPath("$.[*].masternodesOnlineUrl").value(hasItem(DEFAULT_MASTERNODES_ONLINE_URL.toString())))
+            .andExpect(jsonPath("$.[*].githubUrl").value(hasItem(DEFAULT_GITHUB_URL.toString())))
+            .andExpect(jsonPath("$.[*].githubCommits").value(hasItem(DEFAULT_GITHUB_COMMITS)))
+            .andExpect(jsonPath("$.[*].createdAt").value(hasItem(DEFAULT_CREATED_AT.toString())))
+            .andExpect(jsonPath("$.[*].pushedAt").value(hasItem(DEFAULT_PUSHED_AT.toString())))
+            .andExpect(jsonPath("$.[*].notes").value(hasItem(DEFAULT_NOTES.toString())));
     }
     
     @Test
@@ -179,7 +271,22 @@ public class MasternodesOnlineSupplementPublicResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(masternodesOnlineSupplementPublic.getId()))
-            .andExpect(jsonPath("$.test").value(DEFAULT_TEST.toString()));
+            .andExpect(jsonPath("$.coin").value(DEFAULT_COIN.toString()))
+            .andExpect(jsonPath("$.price").value(DEFAULT_PRICE.toString()))
+            .andExpect(jsonPath("$.change").value(DEFAULT_CHANGE.toString()))
+            .andExpect(jsonPath("$.volume").value(DEFAULT_VOLUME.toString()))
+            .andExpect(jsonPath("$.marketcap").value(DEFAULT_MARKETCAP.toString()))
+            .andExpect(jsonPath("$.roi").value(DEFAULT_ROI.toString()))
+            .andExpect(jsonPath("$.nodes").value(DEFAULT_NODES.toString()))
+            .andExpect(jsonPath("$.numberRequired").value(DEFAULT_NUMBER_REQUIRED.toString()))
+            .andExpect(jsonPath("$.minimumWorth").value(DEFAULT_MINIMUM_WORTH.toString()))
+            .andExpect(jsonPath("$.projectOrigin").value(DEFAULT_PROJECT_ORIGIN.toString()))
+            .andExpect(jsonPath("$.masternodesOnlineUrl").value(DEFAULT_MASTERNODES_ONLINE_URL.toString()))
+            .andExpect(jsonPath("$.githubUrl").value(DEFAULT_GITHUB_URL.toString()))
+            .andExpect(jsonPath("$.githubCommits").value(DEFAULT_GITHUB_COMMITS))
+            .andExpect(jsonPath("$.createdAt").value(DEFAULT_CREATED_AT.toString()))
+            .andExpect(jsonPath("$.pushedAt").value(DEFAULT_PUSHED_AT.toString()))
+            .andExpect(jsonPath("$.notes").value(DEFAULT_NOTES.toString()));
     }
 
     @Test
@@ -199,7 +306,22 @@ public class MasternodesOnlineSupplementPublicResourceIntTest {
         // Update the masternodesOnlineSupplementPublic
         MasternodesOnlineSupplementPublic updatedMasternodesOnlineSupplementPublic = masternodesOnlineSupplementPublicRepository.findById(masternodesOnlineSupplementPublic.getId()).get();
         updatedMasternodesOnlineSupplementPublic
-            .test(UPDATED_TEST);
+            .coin(UPDATED_COIN)
+            .price(UPDATED_PRICE)
+            .change(UPDATED_CHANGE)
+            .volume(UPDATED_VOLUME)
+            .marketcap(UPDATED_MARKETCAP)
+            .roi(UPDATED_ROI)
+            .nodes(UPDATED_NODES)
+            .numberRequired(UPDATED_NUMBER_REQUIRED)
+            .minimumWorth(UPDATED_MINIMUM_WORTH)
+            .projectOrigin(UPDATED_PROJECT_ORIGIN)
+            .masternodesOnlineUrl(UPDATED_MASTERNODES_ONLINE_URL)
+            .githubUrl(UPDATED_GITHUB_URL)
+            .githubCommits(UPDATED_GITHUB_COMMITS)
+            .createdAt(UPDATED_CREATED_AT)
+            .pushedAt(UPDATED_PUSHED_AT)
+            .notes(UPDATED_NOTES);
         MasternodesOnlineSupplementPublicDTO masternodesOnlineSupplementPublicDTO = masternodesOnlineSupplementPublicMapper.toDto(updatedMasternodesOnlineSupplementPublic);
 
         restMasternodesOnlineSupplementPublicMockMvc.perform(put("/api/masternodes-online-supplement-publics")
@@ -211,7 +333,22 @@ public class MasternodesOnlineSupplementPublicResourceIntTest {
         List<MasternodesOnlineSupplementPublic> masternodesOnlineSupplementPublicList = masternodesOnlineSupplementPublicRepository.findAll();
         assertThat(masternodesOnlineSupplementPublicList).hasSize(databaseSizeBeforeUpdate);
         MasternodesOnlineSupplementPublic testMasternodesOnlineSupplementPublic = masternodesOnlineSupplementPublicList.get(masternodesOnlineSupplementPublicList.size() - 1);
-        assertThat(testMasternodesOnlineSupplementPublic.getTest()).isEqualTo(UPDATED_TEST);
+        assertThat(testMasternodesOnlineSupplementPublic.getCoin()).isEqualTo(UPDATED_COIN);
+        assertThat(testMasternodesOnlineSupplementPublic.getPrice()).isEqualTo(UPDATED_PRICE);
+        assertThat(testMasternodesOnlineSupplementPublic.getChange()).isEqualTo(UPDATED_CHANGE);
+        assertThat(testMasternodesOnlineSupplementPublic.getVolume()).isEqualTo(UPDATED_VOLUME);
+        assertThat(testMasternodesOnlineSupplementPublic.getMarketcap()).isEqualTo(UPDATED_MARKETCAP);
+        assertThat(testMasternodesOnlineSupplementPublic.getRoi()).isEqualTo(UPDATED_ROI);
+        assertThat(testMasternodesOnlineSupplementPublic.getNodes()).isEqualTo(UPDATED_NODES);
+        assertThat(testMasternodesOnlineSupplementPublic.getNumberRequired()).isEqualTo(UPDATED_NUMBER_REQUIRED);
+        assertThat(testMasternodesOnlineSupplementPublic.getMinimumWorth()).isEqualTo(UPDATED_MINIMUM_WORTH);
+        assertThat(testMasternodesOnlineSupplementPublic.getProjectOrigin()).isEqualTo(UPDATED_PROJECT_ORIGIN);
+        assertThat(testMasternodesOnlineSupplementPublic.getMasternodesOnlineUrl()).isEqualTo(UPDATED_MASTERNODES_ONLINE_URL);
+        assertThat(testMasternodesOnlineSupplementPublic.getGithubUrl()).isEqualTo(UPDATED_GITHUB_URL);
+        assertThat(testMasternodesOnlineSupplementPublic.getGithubCommits()).isEqualTo(UPDATED_GITHUB_COMMITS);
+        assertThat(testMasternodesOnlineSupplementPublic.getCreatedAt()).isEqualTo(UPDATED_CREATED_AT);
+        assertThat(testMasternodesOnlineSupplementPublic.getPushedAt()).isEqualTo(UPDATED_PUSHED_AT);
+        assertThat(testMasternodesOnlineSupplementPublic.getNotes()).isEqualTo(UPDATED_NOTES);
 
         // Validate the MasternodesOnlineSupplementPublic in Elasticsearch
         verify(mockMasternodesOnlineSupplementPublicSearchRepository, times(1)).save(testMasternodesOnlineSupplementPublic);
@@ -269,7 +406,22 @@ public class MasternodesOnlineSupplementPublicResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(masternodesOnlineSupplementPublic.getId())))
-            .andExpect(jsonPath("$.[*].test").value(hasItem(DEFAULT_TEST)));
+            .andExpect(jsonPath("$.[*].coin").value(hasItem(DEFAULT_COIN)))
+            .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE)))
+            .andExpect(jsonPath("$.[*].change").value(hasItem(DEFAULT_CHANGE)))
+            .andExpect(jsonPath("$.[*].volume").value(hasItem(DEFAULT_VOLUME)))
+            .andExpect(jsonPath("$.[*].marketcap").value(hasItem(DEFAULT_MARKETCAP)))
+            .andExpect(jsonPath("$.[*].roi").value(hasItem(DEFAULT_ROI)))
+            .andExpect(jsonPath("$.[*].nodes").value(hasItem(DEFAULT_NODES)))
+            .andExpect(jsonPath("$.[*].numberRequired").value(hasItem(DEFAULT_NUMBER_REQUIRED)))
+            .andExpect(jsonPath("$.[*].minimumWorth").value(hasItem(DEFAULT_MINIMUM_WORTH)))
+            .andExpect(jsonPath("$.[*].projectOrigin").value(hasItem(DEFAULT_PROJECT_ORIGIN)))
+            .andExpect(jsonPath("$.[*].masternodesOnlineUrl").value(hasItem(DEFAULT_MASTERNODES_ONLINE_URL)))
+            .andExpect(jsonPath("$.[*].githubUrl").value(hasItem(DEFAULT_GITHUB_URL)))
+            .andExpect(jsonPath("$.[*].githubCommits").value(hasItem(DEFAULT_GITHUB_COMMITS)))
+            .andExpect(jsonPath("$.[*].createdAt").value(hasItem(DEFAULT_CREATED_AT.toString())))
+            .andExpect(jsonPath("$.[*].pushedAt").value(hasItem(DEFAULT_PUSHED_AT.toString())))
+            .andExpect(jsonPath("$.[*].notes").value(hasItem(DEFAULT_NOTES)));
     }
 
     @Test
