@@ -1,0 +1,19 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "MasternodesOnlineSupplementApi",
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "test",
+            "fieldType": "String"
+        }
+    ],
+    "dto": "mapstruct",
+    "searchEngine": "elasticsearch",
+    "service": "serviceClass",
+    "entityTableName": "masternodes_online_supplement_public",
+    "databaseType": "mongodb",
+    "jpaMetamodelFiltering": false,
+    "pagination": "infinite-scroll",
+    "microserviceName": "MasternodesOnlineSupplementApi"
+}
