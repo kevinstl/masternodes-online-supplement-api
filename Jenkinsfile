@@ -127,7 +127,7 @@ pipeline {
         }
 
         container('jx-base') {
-          sh "./mvnw clean package -Pprod  -DnewVersion=\$(cat VERSION) -DskipTests"
+          sh "./mvnw clean package -Pprod -Pswagger -DnewVersion=\$(cat VERSION) -DskipTests"
             sh "ls -al"
             sh "ls -al ./target"
 //          sh "./mvnw clean package -Pprod  -DnewVersion=\$(cat VERSION)"
