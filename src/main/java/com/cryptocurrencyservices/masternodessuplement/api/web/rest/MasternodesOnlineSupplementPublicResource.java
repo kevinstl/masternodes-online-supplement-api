@@ -1,9 +1,9 @@
 package com.cryptocurrencyservices.masternodessuplement.api.web.rest;
-import com.cryptocurrencyservices.masternodessuplement.api.service.MasternodesOnlineSupplementPublicService;
+import com.cryptocurrencyservices.masternodessuplement.api.service.MasternodesOnlineSupplementService;
 import com.cryptocurrencyservices.masternodessuplement.api.web.rest.errors.BadRequestAlertException;
 import com.cryptocurrencyservices.masternodessuplement.api.web.rest.util.HeaderUtil;
 import com.cryptocurrencyservices.masternodessuplement.api.web.rest.util.PaginationUtil;
-import com.cryptocurrencyservices.masternodessuplement.api.service.dto.MasternodesOnlineSupplementPublicDTO;
+import com.cryptocurrencyservices.masternodessuplement.api.service.dto.MasternodesOnlineSupplementDTO;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,9 +34,9 @@ public class MasternodesOnlineSupplementPublicResource {
 
     private static final String ENTITY_NAME = "masternodesOnlineSupplementApiMasternodesOnlineSupplementPublic";
 
-    private final MasternodesOnlineSupplementPublicService masternodesOnlineSupplementPublicService;
+    private final MasternodesOnlineSupplementService masternodesOnlineSupplementPublicService;
 
-    public MasternodesOnlineSupplementPublicResource(MasternodesOnlineSupplementPublicService masternodesOnlineSupplementPublicService) {
+    public MasternodesOnlineSupplementPublicResource(MasternodesOnlineSupplementService masternodesOnlineSupplementPublicService) {
         this.masternodesOnlineSupplementPublicService = masternodesOnlineSupplementPublicService;
     }
 
@@ -48,12 +48,12 @@ public class MasternodesOnlineSupplementPublicResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/masternodes-online-supplement-publics")
-    public ResponseEntity<MasternodesOnlineSupplementPublicDTO> createMasternodesOnlineSupplementPublic(@RequestBody MasternodesOnlineSupplementPublicDTO masternodesOnlineSupplementPublicDTO) throws URISyntaxException {
+    public ResponseEntity<MasternodesOnlineSupplementDTO> createMasternodesOnlineSupplementPublic(@RequestBody MasternodesOnlineSupplementDTO masternodesOnlineSupplementPublicDTO) throws URISyntaxException {
         log.debug("REST request to save MasternodesOnlineSupplementPublic : {}", masternodesOnlineSupplementPublicDTO);
         if (masternodesOnlineSupplementPublicDTO.getId() != null) {
             throw new BadRequestAlertException("A new masternodesOnlineSupplementPublic cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        MasternodesOnlineSupplementPublicDTO result = masternodesOnlineSupplementPublicService.save(masternodesOnlineSupplementPublicDTO);
+        MasternodesOnlineSupplementDTO result = masternodesOnlineSupplementPublicService.save(masternodesOnlineSupplementPublicDTO);
         return ResponseEntity.created(new URI("/api/masternodes-online-supplement-publics/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -69,12 +69,12 @@ public class MasternodesOnlineSupplementPublicResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PutMapping("/masternodes-online-supplement-publics")
-    public ResponseEntity<MasternodesOnlineSupplementPublicDTO> updateMasternodesOnlineSupplementPublic(@RequestBody MasternodesOnlineSupplementPublicDTO masternodesOnlineSupplementPublicDTO) throws URISyntaxException {
+    public ResponseEntity<MasternodesOnlineSupplementDTO> updateMasternodesOnlineSupplementPublic(@RequestBody MasternodesOnlineSupplementDTO masternodesOnlineSupplementPublicDTO) throws URISyntaxException {
         log.debug("REST request to update MasternodesOnlineSupplementPublic : {}", masternodesOnlineSupplementPublicDTO);
         if (masternodesOnlineSupplementPublicDTO.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
-        MasternodesOnlineSupplementPublicDTO result = masternodesOnlineSupplementPublicService.save(masternodesOnlineSupplementPublicDTO);
+        MasternodesOnlineSupplementDTO result = masternodesOnlineSupplementPublicService.save(masternodesOnlineSupplementPublicDTO);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, masternodesOnlineSupplementPublicDTO.getId().toString()))
             .body(result);
@@ -87,9 +87,9 @@ public class MasternodesOnlineSupplementPublicResource {
      * @return the ResponseEntity with status 200 (OK) and the list of masternodesOnlineSupplementPublics in body
      */
     @GetMapping("/masternodes-online-supplement-publics")
-    public ResponseEntity<List<MasternodesOnlineSupplementPublicDTO>> getAllMasternodesOnlineSupplementPublics(Pageable pageable) {
+    public ResponseEntity<List<MasternodesOnlineSupplementDTO>> getAllMasternodesOnlineSupplementPublics(Pageable pageable) {
         log.debug("REST request to get a page of MasternodesOnlineSupplementPublics");
-        Page<MasternodesOnlineSupplementPublicDTO> page = masternodesOnlineSupplementPublicService.findAll(pageable);
+        Page<MasternodesOnlineSupplementDTO> page = masternodesOnlineSupplementPublicService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/masternodes-online-supplement-publics");
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
@@ -101,9 +101,9 @@ public class MasternodesOnlineSupplementPublicResource {
      * @return the ResponseEntity with status 200 (OK) and with body the masternodesOnlineSupplementPublicDTO, or with status 404 (Not Found)
      */
     @GetMapping("/masternodes-online-supplement-publics/{id}")
-    public ResponseEntity<MasternodesOnlineSupplementPublicDTO> getMasternodesOnlineSupplementPublic(@PathVariable String id) {
+    public ResponseEntity<MasternodesOnlineSupplementDTO> getMasternodesOnlineSupplementPublic(@PathVariable String id) {
         log.debug("REST request to get MasternodesOnlineSupplementPublic : {}", id);
-        Optional<MasternodesOnlineSupplementPublicDTO> masternodesOnlineSupplementPublicDTO = masternodesOnlineSupplementPublicService.findOne(id);
+        Optional<MasternodesOnlineSupplementDTO> masternodesOnlineSupplementPublicDTO = masternodesOnlineSupplementPublicService.findOne(id);
         return ResponseUtil.wrapOrNotFound(masternodesOnlineSupplementPublicDTO);
     }
 
@@ -129,9 +129,9 @@ public class MasternodesOnlineSupplementPublicResource {
      * @return the result of the search
      */
     @GetMapping("/_search/masternodes-online-supplement-publics")
-    public ResponseEntity<List<MasternodesOnlineSupplementPublicDTO>> searchMasternodesOnlineSupplementPublics(@RequestParam String query, Pageable pageable) {
+    public ResponseEntity<List<MasternodesOnlineSupplementDTO>> searchMasternodesOnlineSupplementPublics(@RequestParam String query, Pageable pageable) {
         log.debug("REST request to search for a page of MasternodesOnlineSupplementPublics for query {}", query);
-        Page<MasternodesOnlineSupplementPublicDTO> page = masternodesOnlineSupplementPublicService.search(query, pageable);
+        Page<MasternodesOnlineSupplementDTO> page = masternodesOnlineSupplementPublicService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/masternodes-online-supplement-publics");
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

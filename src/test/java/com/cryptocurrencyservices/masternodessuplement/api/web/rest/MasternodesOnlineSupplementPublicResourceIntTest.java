@@ -2,12 +2,12 @@ package com.cryptocurrencyservices.masternodessuplement.api.web.rest;
 
 import com.cryptocurrencyservices.masternodessuplement.api.MasternodesOnlineSupplementApiApp;
 
-import com.cryptocurrencyservices.masternodessuplement.api.domain.MasternodesOnlineSupplementPublic;
-import com.cryptocurrencyservices.masternodessuplement.api.repository.MasternodesOnlineSupplementPublicRepository;
-import com.cryptocurrencyservices.masternodessuplement.api.repository.search.MasternodesOnlineSupplementPublicSearchRepository;
-import com.cryptocurrencyservices.masternodessuplement.api.service.MasternodesOnlineSupplementPublicService;
-import com.cryptocurrencyservices.masternodessuplement.api.service.dto.MasternodesOnlineSupplementPublicDTO;
-import com.cryptocurrencyservices.masternodessuplement.api.service.mapper.MasternodesOnlineSupplementPublicMapper;
+import com.cryptocurrencyservices.masternodessuplement.api.domain.MasternodesOnlineSupplement;
+import com.cryptocurrencyservices.masternodessuplement.api.repository.MasternodesOnlineSupplementRepository;
+import com.cryptocurrencyservices.masternodessuplement.api.repository.search.MasternodesOnlineSupplementSearchRepository;
+import com.cryptocurrencyservices.masternodessuplement.api.service.MasternodesOnlineSupplementService;
+import com.cryptocurrencyservices.masternodessuplement.api.service.dto.MasternodesOnlineSupplementDTO;
+import com.cryptocurrencyservices.masternodessuplement.api.service.mapper.MasternodesOnlineSupplementMapper;
 import com.cryptocurrencyservices.masternodessuplement.api.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -41,7 +41,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
- * Test class for the MasternodesOnlineSupplementPublicResource REST controller.
+ * Test class for the MasternodesOnlineSupplementResource REST controller.
  *
  * @see MasternodesOnlineSupplementPublicResource
  */
@@ -98,21 +98,21 @@ public class MasternodesOnlineSupplementPublicResourceIntTest {
     private static final String UPDATED_NOTES = "BBBBBBBBBB";
 
     @Autowired
-    private MasternodesOnlineSupplementPublicRepository masternodesOnlineSupplementPublicRepository;
+    private MasternodesOnlineSupplementRepository masternodesOnlineSupplementPublicRepository;
 
     @Autowired
-    private MasternodesOnlineSupplementPublicMapper masternodesOnlineSupplementPublicMapper;
+    private MasternodesOnlineSupplementMapper masternodesOnlineSupplementPublicMapper;
 
     @Autowired
-    private MasternodesOnlineSupplementPublicService masternodesOnlineSupplementPublicService;
+    private MasternodesOnlineSupplementService masternodesOnlineSupplementPublicService;
 
     /**
      * This repository is mocked in the com.cryptocurrencyservices.masternodessuplement.api.repository.search test package.
      *
-     * @see com.cryptocurrencyservices.masternodessuplement.api.repository.search.MasternodesOnlineSupplementPublicSearchRepositoryMockConfiguration
+     * @see com.cryptocurrencyservices.masternodessuplement.api.repository.search.MasternodesOnlineSupplementSearchRepositoryMockConfiguration
      */
     @Autowired
-    private MasternodesOnlineSupplementPublicSearchRepository mockMasternodesOnlineSupplementPublicSearchRepository;
+    private MasternodesOnlineSupplementSearchRepository mockMasternodesOnlineSupplementSearchRepository;
 
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
@@ -126,15 +126,15 @@ public class MasternodesOnlineSupplementPublicResourceIntTest {
     @Autowired
     private Validator validator;
 
-    private MockMvc restMasternodesOnlineSupplementPublicMockMvc;
+    private MockMvc restMasternodesOnlineSupplementMockMvc;
 
-    private MasternodesOnlineSupplementPublic masternodesOnlineSupplementPublic;
+    private MasternodesOnlineSupplement masternodesOnlineSupplementPublic;
 
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
         final MasternodesOnlineSupplementPublicResource masternodesOnlineSupplementPublicResource = new MasternodesOnlineSupplementPublicResource(masternodesOnlineSupplementPublicService);
-        this.restMasternodesOnlineSupplementPublicMockMvc = MockMvcBuilders.standaloneSetup(masternodesOnlineSupplementPublicResource)
+        this.restMasternodesOnlineSupplementMockMvc = MockMvcBuilders.standaloneSetup(masternodesOnlineSupplementPublicResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
             .setConversionService(createFormattingConversionService())
@@ -148,8 +148,8 @@ public class MasternodesOnlineSupplementPublicResourceIntTest {
      * This is a static method, as tests for other entities might also need it,
      * if they test an entity which requires the current entity.
      */
-    public static MasternodesOnlineSupplementPublic createEntity() {
-        MasternodesOnlineSupplementPublic masternodesOnlineSupplementPublic = new MasternodesOnlineSupplementPublic()
+    public static MasternodesOnlineSupplement createEntity() {
+        MasternodesOnlineSupplement masternodesOnlineSupplementPublic = new MasternodesOnlineSupplement()
             .coin(DEFAULT_COIN)
             .price(DEFAULT_PRICE)
             .change(DEFAULT_CHANGE)
@@ -176,70 +176,70 @@ public class MasternodesOnlineSupplementPublicResourceIntTest {
     }
 
     @Test
-    public void createMasternodesOnlineSupplementPublic() throws Exception {
+    public void createMasternodesOnlineSupplement() throws Exception {
         int databaseSizeBeforeCreate = masternodesOnlineSupplementPublicRepository.findAll().size();
 
-        // Create the MasternodesOnlineSupplementPublic
-        MasternodesOnlineSupplementPublicDTO masternodesOnlineSupplementPublicDTO = masternodesOnlineSupplementPublicMapper.toDto(masternodesOnlineSupplementPublic);
-        restMasternodesOnlineSupplementPublicMockMvc.perform(post("/api/masternodes-online-supplement-publics")
+        // Create the MasternodesOnlineSupplement
+        MasternodesOnlineSupplementDTO masternodesOnlineSupplementPublicDTO = masternodesOnlineSupplementPublicMapper.toDto(masternodesOnlineSupplementPublic);
+        restMasternodesOnlineSupplementMockMvc.perform(post("/api/masternodes-online-supplement-publics")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(masternodesOnlineSupplementPublicDTO)))
             .andExpect(status().isCreated());
 
-        // Validate the MasternodesOnlineSupplementPublic in the database
-        List<MasternodesOnlineSupplementPublic> masternodesOnlineSupplementPublicList = masternodesOnlineSupplementPublicRepository.findAll();
+        // Validate the MasternodesOnlineSupplement in the database
+        List<MasternodesOnlineSupplement> masternodesOnlineSupplementPublicList = masternodesOnlineSupplementPublicRepository.findAll();
         assertThat(masternodesOnlineSupplementPublicList).hasSize(databaseSizeBeforeCreate + 1);
-        MasternodesOnlineSupplementPublic testMasternodesOnlineSupplementPublic = masternodesOnlineSupplementPublicList.get(masternodesOnlineSupplementPublicList.size() - 1);
-        assertThat(testMasternodesOnlineSupplementPublic.getCoin()).isEqualTo(DEFAULT_COIN);
-        assertThat(testMasternodesOnlineSupplementPublic.getPrice()).isEqualTo(DEFAULT_PRICE);
-        assertThat(testMasternodesOnlineSupplementPublic.getChange()).isEqualTo(DEFAULT_CHANGE);
-        assertThat(testMasternodesOnlineSupplementPublic.getVolume()).isEqualTo(DEFAULT_VOLUME);
-        assertThat(testMasternodesOnlineSupplementPublic.getMarketcap()).isEqualTo(DEFAULT_MARKETCAP);
-        assertThat(testMasternodesOnlineSupplementPublic.getRoi()).isEqualTo(DEFAULT_ROI);
-        assertThat(testMasternodesOnlineSupplementPublic.getNodes()).isEqualTo(DEFAULT_NODES);
-        assertThat(testMasternodesOnlineSupplementPublic.getNumberRequired()).isEqualTo(DEFAULT_NUMBER_REQUIRED);
-        assertThat(testMasternodesOnlineSupplementPublic.getMinimumWorth()).isEqualTo(DEFAULT_MINIMUM_WORTH);
-        assertThat(testMasternodesOnlineSupplementPublic.getProjectOrigin()).isEqualTo(DEFAULT_PROJECT_ORIGIN);
-        assertThat(testMasternodesOnlineSupplementPublic.getMasternodesOnlineUrl()).isEqualTo(DEFAULT_MASTERNODES_ONLINE_URL);
-        assertThat(testMasternodesOnlineSupplementPublic.getGithubUrl()).isEqualTo(DEFAULT_GITHUB_URL);
-        assertThat(testMasternodesOnlineSupplementPublic.getGithubCommits()).isEqualTo(DEFAULT_GITHUB_COMMITS);
-        assertThat(testMasternodesOnlineSupplementPublic.getCreatedAt()).isEqualTo(DEFAULT_CREATED_AT);
-        assertThat(testMasternodesOnlineSupplementPublic.getPushedAt()).isEqualTo(DEFAULT_PUSHED_AT);
-        assertThat(testMasternodesOnlineSupplementPublic.getNotes()).isEqualTo(DEFAULT_NOTES);
+        MasternodesOnlineSupplement testMasternodesOnlineSupplement = masternodesOnlineSupplementPublicList.get(masternodesOnlineSupplementPublicList.size() - 1);
+        assertThat(testMasternodesOnlineSupplement.getCoin()).isEqualTo(DEFAULT_COIN);
+        assertThat(testMasternodesOnlineSupplement.getPrice()).isEqualTo(DEFAULT_PRICE);
+        assertThat(testMasternodesOnlineSupplement.getChange()).isEqualTo(DEFAULT_CHANGE);
+        assertThat(testMasternodesOnlineSupplement.getVolume()).isEqualTo(DEFAULT_VOLUME);
+        assertThat(testMasternodesOnlineSupplement.getMarketcap()).isEqualTo(DEFAULT_MARKETCAP);
+        assertThat(testMasternodesOnlineSupplement.getRoi()).isEqualTo(DEFAULT_ROI);
+        assertThat(testMasternodesOnlineSupplement.getNodes()).isEqualTo(DEFAULT_NODES);
+        assertThat(testMasternodesOnlineSupplement.getNumberRequired()).isEqualTo(DEFAULT_NUMBER_REQUIRED);
+        assertThat(testMasternodesOnlineSupplement.getMinimumWorth()).isEqualTo(DEFAULT_MINIMUM_WORTH);
+        assertThat(testMasternodesOnlineSupplement.getProjectOrigin()).isEqualTo(DEFAULT_PROJECT_ORIGIN);
+        assertThat(testMasternodesOnlineSupplement.getMasternodesOnlineUrl()).isEqualTo(DEFAULT_MASTERNODES_ONLINE_URL);
+        assertThat(testMasternodesOnlineSupplement.getGithubUrl()).isEqualTo(DEFAULT_GITHUB_URL);
+        assertThat(testMasternodesOnlineSupplement.getGithubCommits()).isEqualTo(DEFAULT_GITHUB_COMMITS);
+        assertThat(testMasternodesOnlineSupplement.getCreatedAt()).isEqualTo(DEFAULT_CREATED_AT);
+        assertThat(testMasternodesOnlineSupplement.getPushedAt()).isEqualTo(DEFAULT_PUSHED_AT);
+        assertThat(testMasternodesOnlineSupplement.getNotes()).isEqualTo(DEFAULT_NOTES);
 
-        // Validate the MasternodesOnlineSupplementPublic in Elasticsearch
-        verify(mockMasternodesOnlineSupplementPublicSearchRepository, times(1)).save(testMasternodesOnlineSupplementPublic);
+        // Validate the MasternodesOnlineSupplement in Elasticsearch
+        verify(mockMasternodesOnlineSupplementSearchRepository, times(1)).save(testMasternodesOnlineSupplement);
     }
 
     @Test
-    public void createMasternodesOnlineSupplementPublicWithExistingId() throws Exception {
+    public void createMasternodesOnlineSupplementWithExistingId() throws Exception {
         int databaseSizeBeforeCreate = masternodesOnlineSupplementPublicRepository.findAll().size();
 
-        // Create the MasternodesOnlineSupplementPublic with an existing ID
+        // Create the MasternodesOnlineSupplement with an existing ID
         masternodesOnlineSupplementPublic.setId("existing_id");
-        MasternodesOnlineSupplementPublicDTO masternodesOnlineSupplementPublicDTO = masternodesOnlineSupplementPublicMapper.toDto(masternodesOnlineSupplementPublic);
+        MasternodesOnlineSupplementDTO masternodesOnlineSupplementPublicDTO = masternodesOnlineSupplementPublicMapper.toDto(masternodesOnlineSupplementPublic);
 
         // An entity with an existing ID cannot be created, so this API call must fail
-        restMasternodesOnlineSupplementPublicMockMvc.perform(post("/api/masternodes-online-supplement-publics")
+        restMasternodesOnlineSupplementMockMvc.perform(post("/api/masternodes-online-supplement-publics")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(masternodesOnlineSupplementPublicDTO)))
             .andExpect(status().isBadRequest());
 
-        // Validate the MasternodesOnlineSupplementPublic in the database
-        List<MasternodesOnlineSupplementPublic> masternodesOnlineSupplementPublicList = masternodesOnlineSupplementPublicRepository.findAll();
+        // Validate the MasternodesOnlineSupplement in the database
+        List<MasternodesOnlineSupplement> masternodesOnlineSupplementPublicList = masternodesOnlineSupplementPublicRepository.findAll();
         assertThat(masternodesOnlineSupplementPublicList).hasSize(databaseSizeBeforeCreate);
 
-        // Validate the MasternodesOnlineSupplementPublic in Elasticsearch
-        verify(mockMasternodesOnlineSupplementPublicSearchRepository, times(0)).save(masternodesOnlineSupplementPublic);
+        // Validate the MasternodesOnlineSupplement in Elasticsearch
+        verify(mockMasternodesOnlineSupplementSearchRepository, times(0)).save(masternodesOnlineSupplementPublic);
     }
 
     @Test
-    public void getAllMasternodesOnlineSupplementPublics() throws Exception {
+    public void getAllMasternodesOnlineSupplements() throws Exception {
         // Initialize the database
         masternodesOnlineSupplementPublicRepository.save(masternodesOnlineSupplementPublic);
 
         // Get all the masternodesOnlineSupplementPublicList
-        restMasternodesOnlineSupplementPublicMockMvc.perform(get("/api/masternodes-online-supplement-publics?sort=id,desc"))
+        restMasternodesOnlineSupplementMockMvc.perform(get("/api/masternodes-online-supplement-publics?sort=id,desc"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(masternodesOnlineSupplementPublic.getId())))
@@ -260,14 +260,14 @@ public class MasternodesOnlineSupplementPublicResourceIntTest {
             .andExpect(jsonPath("$.[*].pushedAt").value(hasItem(DEFAULT_PUSHED_AT.toString())))
             .andExpect(jsonPath("$.[*].notes").value(hasItem(DEFAULT_NOTES.toString())));
     }
-    
+
     @Test
-    public void getMasternodesOnlineSupplementPublic() throws Exception {
+    public void getMasternodesOnlineSupplement() throws Exception {
         // Initialize the database
         masternodesOnlineSupplementPublicRepository.save(masternodesOnlineSupplementPublic);
 
         // Get the masternodesOnlineSupplementPublic
-        restMasternodesOnlineSupplementPublicMockMvc.perform(get("/api/masternodes-online-supplement-publics/{id}", masternodesOnlineSupplementPublic.getId()))
+        restMasternodesOnlineSupplementMockMvc.perform(get("/api/masternodes-online-supplement-publics/{id}", masternodesOnlineSupplementPublic.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(masternodesOnlineSupplementPublic.getId()))
@@ -290,22 +290,22 @@ public class MasternodesOnlineSupplementPublicResourceIntTest {
     }
 
     @Test
-    public void getNonExistingMasternodesOnlineSupplementPublic() throws Exception {
+    public void getNonExistingMasternodesOnlineSupplement() throws Exception {
         // Get the masternodesOnlineSupplementPublic
-        restMasternodesOnlineSupplementPublicMockMvc.perform(get("/api/masternodes-online-supplement-publics/{id}", Long.MAX_VALUE))
+        restMasternodesOnlineSupplementMockMvc.perform(get("/api/masternodes-online-supplement-publics/{id}", Long.MAX_VALUE))
             .andExpect(status().isNotFound());
     }
 
     @Test
-    public void updateMasternodesOnlineSupplementPublic() throws Exception {
+    public void updateMasternodesOnlineSupplement() throws Exception {
         // Initialize the database
         masternodesOnlineSupplementPublicRepository.save(masternodesOnlineSupplementPublic);
 
         int databaseSizeBeforeUpdate = masternodesOnlineSupplementPublicRepository.findAll().size();
 
         // Update the masternodesOnlineSupplementPublic
-        MasternodesOnlineSupplementPublic updatedMasternodesOnlineSupplementPublic = masternodesOnlineSupplementPublicRepository.findById(masternodesOnlineSupplementPublic.getId()).get();
-        updatedMasternodesOnlineSupplementPublic
+        MasternodesOnlineSupplement updatedMasternodesOnlineSupplement = masternodesOnlineSupplementPublicRepository.findById(masternodesOnlineSupplementPublic.getId()).get();
+        updatedMasternodesOnlineSupplement
             .coin(UPDATED_COIN)
             .price(UPDATED_PRICE)
             .change(UPDATED_CHANGE)
@@ -322,87 +322,87 @@ public class MasternodesOnlineSupplementPublicResourceIntTest {
             .createdAt(UPDATED_CREATED_AT)
             .pushedAt(UPDATED_PUSHED_AT)
             .notes(UPDATED_NOTES);
-        MasternodesOnlineSupplementPublicDTO masternodesOnlineSupplementPublicDTO = masternodesOnlineSupplementPublicMapper.toDto(updatedMasternodesOnlineSupplementPublic);
+        MasternodesOnlineSupplementDTO masternodesOnlineSupplementPublicDTO = masternodesOnlineSupplementPublicMapper.toDto(updatedMasternodesOnlineSupplement);
 
-        restMasternodesOnlineSupplementPublicMockMvc.perform(put("/api/masternodes-online-supplement-publics")
+        restMasternodesOnlineSupplementMockMvc.perform(put("/api/masternodes-online-supplement-publics")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(masternodesOnlineSupplementPublicDTO)))
             .andExpect(status().isOk());
 
-        // Validate the MasternodesOnlineSupplementPublic in the database
-        List<MasternodesOnlineSupplementPublic> masternodesOnlineSupplementPublicList = masternodesOnlineSupplementPublicRepository.findAll();
+        // Validate the MasternodesOnlineSupplement in the database
+        List<MasternodesOnlineSupplement> masternodesOnlineSupplementPublicList = masternodesOnlineSupplementPublicRepository.findAll();
         assertThat(masternodesOnlineSupplementPublicList).hasSize(databaseSizeBeforeUpdate);
-        MasternodesOnlineSupplementPublic testMasternodesOnlineSupplementPublic = masternodesOnlineSupplementPublicList.get(masternodesOnlineSupplementPublicList.size() - 1);
-        assertThat(testMasternodesOnlineSupplementPublic.getCoin()).isEqualTo(UPDATED_COIN);
-        assertThat(testMasternodesOnlineSupplementPublic.getPrice()).isEqualTo(UPDATED_PRICE);
-        assertThat(testMasternodesOnlineSupplementPublic.getChange()).isEqualTo(UPDATED_CHANGE);
-        assertThat(testMasternodesOnlineSupplementPublic.getVolume()).isEqualTo(UPDATED_VOLUME);
-        assertThat(testMasternodesOnlineSupplementPublic.getMarketcap()).isEqualTo(UPDATED_MARKETCAP);
-        assertThat(testMasternodesOnlineSupplementPublic.getRoi()).isEqualTo(UPDATED_ROI);
-        assertThat(testMasternodesOnlineSupplementPublic.getNodes()).isEqualTo(UPDATED_NODES);
-        assertThat(testMasternodesOnlineSupplementPublic.getNumberRequired()).isEqualTo(UPDATED_NUMBER_REQUIRED);
-        assertThat(testMasternodesOnlineSupplementPublic.getMinimumWorth()).isEqualTo(UPDATED_MINIMUM_WORTH);
-        assertThat(testMasternodesOnlineSupplementPublic.getProjectOrigin()).isEqualTo(UPDATED_PROJECT_ORIGIN);
-        assertThat(testMasternodesOnlineSupplementPublic.getMasternodesOnlineUrl()).isEqualTo(UPDATED_MASTERNODES_ONLINE_URL);
-        assertThat(testMasternodesOnlineSupplementPublic.getGithubUrl()).isEqualTo(UPDATED_GITHUB_URL);
-        assertThat(testMasternodesOnlineSupplementPublic.getGithubCommits()).isEqualTo(UPDATED_GITHUB_COMMITS);
-        assertThat(testMasternodesOnlineSupplementPublic.getCreatedAt()).isEqualTo(UPDATED_CREATED_AT);
-        assertThat(testMasternodesOnlineSupplementPublic.getPushedAt()).isEqualTo(UPDATED_PUSHED_AT);
-        assertThat(testMasternodesOnlineSupplementPublic.getNotes()).isEqualTo(UPDATED_NOTES);
+        MasternodesOnlineSupplement testMasternodesOnlineSupplement = masternodesOnlineSupplementPublicList.get(masternodesOnlineSupplementPublicList.size() - 1);
+        assertThat(testMasternodesOnlineSupplement.getCoin()).isEqualTo(UPDATED_COIN);
+        assertThat(testMasternodesOnlineSupplement.getPrice()).isEqualTo(UPDATED_PRICE);
+        assertThat(testMasternodesOnlineSupplement.getChange()).isEqualTo(UPDATED_CHANGE);
+        assertThat(testMasternodesOnlineSupplement.getVolume()).isEqualTo(UPDATED_VOLUME);
+        assertThat(testMasternodesOnlineSupplement.getMarketcap()).isEqualTo(UPDATED_MARKETCAP);
+        assertThat(testMasternodesOnlineSupplement.getRoi()).isEqualTo(UPDATED_ROI);
+        assertThat(testMasternodesOnlineSupplement.getNodes()).isEqualTo(UPDATED_NODES);
+        assertThat(testMasternodesOnlineSupplement.getNumberRequired()).isEqualTo(UPDATED_NUMBER_REQUIRED);
+        assertThat(testMasternodesOnlineSupplement.getMinimumWorth()).isEqualTo(UPDATED_MINIMUM_WORTH);
+        assertThat(testMasternodesOnlineSupplement.getProjectOrigin()).isEqualTo(UPDATED_PROJECT_ORIGIN);
+        assertThat(testMasternodesOnlineSupplement.getMasternodesOnlineUrl()).isEqualTo(UPDATED_MASTERNODES_ONLINE_URL);
+        assertThat(testMasternodesOnlineSupplement.getGithubUrl()).isEqualTo(UPDATED_GITHUB_URL);
+        assertThat(testMasternodesOnlineSupplement.getGithubCommits()).isEqualTo(UPDATED_GITHUB_COMMITS);
+        assertThat(testMasternodesOnlineSupplement.getCreatedAt()).isEqualTo(UPDATED_CREATED_AT);
+        assertThat(testMasternodesOnlineSupplement.getPushedAt()).isEqualTo(UPDATED_PUSHED_AT);
+        assertThat(testMasternodesOnlineSupplement.getNotes()).isEqualTo(UPDATED_NOTES);
 
-        // Validate the MasternodesOnlineSupplementPublic in Elasticsearch
-        verify(mockMasternodesOnlineSupplementPublicSearchRepository, times(1)).save(testMasternodesOnlineSupplementPublic);
+        // Validate the MasternodesOnlineSupplement in Elasticsearch
+        verify(mockMasternodesOnlineSupplementSearchRepository, times(1)).save(testMasternodesOnlineSupplement);
     }
 
     @Test
-    public void updateNonExistingMasternodesOnlineSupplementPublic() throws Exception {
+    public void updateNonExistingMasternodesOnlineSupplement() throws Exception {
         int databaseSizeBeforeUpdate = masternodesOnlineSupplementPublicRepository.findAll().size();
 
-        // Create the MasternodesOnlineSupplementPublic
-        MasternodesOnlineSupplementPublicDTO masternodesOnlineSupplementPublicDTO = masternodesOnlineSupplementPublicMapper.toDto(masternodesOnlineSupplementPublic);
+        // Create the MasternodesOnlineSupplement
+        MasternodesOnlineSupplementDTO masternodesOnlineSupplementPublicDTO = masternodesOnlineSupplementPublicMapper.toDto(masternodesOnlineSupplementPublic);
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
-        restMasternodesOnlineSupplementPublicMockMvc.perform(put("/api/masternodes-online-supplement-publics")
+        restMasternodesOnlineSupplementMockMvc.perform(put("/api/masternodes-online-supplement-publics")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(masternodesOnlineSupplementPublicDTO)))
             .andExpect(status().isBadRequest());
 
-        // Validate the MasternodesOnlineSupplementPublic in the database
-        List<MasternodesOnlineSupplementPublic> masternodesOnlineSupplementPublicList = masternodesOnlineSupplementPublicRepository.findAll();
+        // Validate the MasternodesOnlineSupplement in the database
+        List<MasternodesOnlineSupplement> masternodesOnlineSupplementPublicList = masternodesOnlineSupplementPublicRepository.findAll();
         assertThat(masternodesOnlineSupplementPublicList).hasSize(databaseSizeBeforeUpdate);
 
-        // Validate the MasternodesOnlineSupplementPublic in Elasticsearch
-        verify(mockMasternodesOnlineSupplementPublicSearchRepository, times(0)).save(masternodesOnlineSupplementPublic);
+        // Validate the MasternodesOnlineSupplement in Elasticsearch
+        verify(mockMasternodesOnlineSupplementSearchRepository, times(0)).save(masternodesOnlineSupplementPublic);
     }
 
     @Test
-    public void deleteMasternodesOnlineSupplementPublic() throws Exception {
+    public void deleteMasternodesOnlineSupplement() throws Exception {
         // Initialize the database
         masternodesOnlineSupplementPublicRepository.save(masternodesOnlineSupplementPublic);
 
         int databaseSizeBeforeDelete = masternodesOnlineSupplementPublicRepository.findAll().size();
 
         // Delete the masternodesOnlineSupplementPublic
-        restMasternodesOnlineSupplementPublicMockMvc.perform(delete("/api/masternodes-online-supplement-publics/{id}", masternodesOnlineSupplementPublic.getId())
+        restMasternodesOnlineSupplementMockMvc.perform(delete("/api/masternodes-online-supplement-publics/{id}", masternodesOnlineSupplementPublic.getId())
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isOk());
 
         // Validate the database is empty
-        List<MasternodesOnlineSupplementPublic> masternodesOnlineSupplementPublicList = masternodesOnlineSupplementPublicRepository.findAll();
+        List<MasternodesOnlineSupplement> masternodesOnlineSupplementPublicList = masternodesOnlineSupplementPublicRepository.findAll();
         assertThat(masternodesOnlineSupplementPublicList).hasSize(databaseSizeBeforeDelete - 1);
 
-        // Validate the MasternodesOnlineSupplementPublic in Elasticsearch
-        verify(mockMasternodesOnlineSupplementPublicSearchRepository, times(1)).deleteById(masternodesOnlineSupplementPublic.getId());
+        // Validate the MasternodesOnlineSupplement in Elasticsearch
+        verify(mockMasternodesOnlineSupplementSearchRepository, times(1)).deleteById(masternodesOnlineSupplementPublic.getId());
     }
 
     @Test
-    public void searchMasternodesOnlineSupplementPublic() throws Exception {
+    public void searchMasternodesOnlineSupplement() throws Exception {
         // Initialize the database
         masternodesOnlineSupplementPublicRepository.save(masternodesOnlineSupplementPublic);
-        when(mockMasternodesOnlineSupplementPublicSearchRepository.search(queryStringQuery("id:" + masternodesOnlineSupplementPublic.getId()), PageRequest.of(0, 20)))
+        when(mockMasternodesOnlineSupplementSearchRepository.search(queryStringQuery("id:" + masternodesOnlineSupplementPublic.getId()), PageRequest.of(0, 20)))
             .thenReturn(new PageImpl<>(Collections.singletonList(masternodesOnlineSupplementPublic), PageRequest.of(0, 1), 1));
         // Search the masternodesOnlineSupplementPublic
-        restMasternodesOnlineSupplementPublicMockMvc.perform(get("/api/_search/masternodes-online-supplement-publics?query=id:" + masternodesOnlineSupplementPublic.getId()))
+        restMasternodesOnlineSupplementMockMvc.perform(get("/api/_search/masternodes-online-supplement-publics?query=id:" + masternodesOnlineSupplementPublic.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(masternodesOnlineSupplementPublic.getId())))
@@ -426,10 +426,10 @@ public class MasternodesOnlineSupplementPublicResourceIntTest {
 
     @Test
     public void equalsVerifier() throws Exception {
-        TestUtil.equalsVerifier(MasternodesOnlineSupplementPublic.class);
-        MasternodesOnlineSupplementPublic masternodesOnlineSupplementPublic1 = new MasternodesOnlineSupplementPublic();
+        TestUtil.equalsVerifier(MasternodesOnlineSupplement.class);
+        MasternodesOnlineSupplement masternodesOnlineSupplementPublic1 = new MasternodesOnlineSupplement();
         masternodesOnlineSupplementPublic1.setId("id1");
-        MasternodesOnlineSupplementPublic masternodesOnlineSupplementPublic2 = new MasternodesOnlineSupplementPublic();
+        MasternodesOnlineSupplement masternodesOnlineSupplementPublic2 = new MasternodesOnlineSupplement();
         masternodesOnlineSupplementPublic2.setId(masternodesOnlineSupplementPublic1.getId());
         assertThat(masternodesOnlineSupplementPublic1).isEqualTo(masternodesOnlineSupplementPublic2);
         masternodesOnlineSupplementPublic2.setId("id2");
@@ -440,10 +440,10 @@ public class MasternodesOnlineSupplementPublicResourceIntTest {
 
     @Test
     public void dtoEqualsVerifier() throws Exception {
-        TestUtil.equalsVerifier(MasternodesOnlineSupplementPublicDTO.class);
-        MasternodesOnlineSupplementPublicDTO masternodesOnlineSupplementPublicDTO1 = new MasternodesOnlineSupplementPublicDTO();
+        TestUtil.equalsVerifier(MasternodesOnlineSupplementDTO.class);
+        MasternodesOnlineSupplementDTO masternodesOnlineSupplementPublicDTO1 = new MasternodesOnlineSupplementDTO();
         masternodesOnlineSupplementPublicDTO1.setId("id1");
-        MasternodesOnlineSupplementPublicDTO masternodesOnlineSupplementPublicDTO2 = new MasternodesOnlineSupplementPublicDTO();
+        MasternodesOnlineSupplementDTO masternodesOnlineSupplementPublicDTO2 = new MasternodesOnlineSupplementDTO();
         assertThat(masternodesOnlineSupplementPublicDTO1).isNotEqualTo(masternodesOnlineSupplementPublicDTO2);
         masternodesOnlineSupplementPublicDTO2.setId(masternodesOnlineSupplementPublicDTO1.getId());
         assertThat(masternodesOnlineSupplementPublicDTO1).isEqualTo(masternodesOnlineSupplementPublicDTO2);
