@@ -27,7 +27,8 @@ import static org.elasticsearch.index.query.QueryBuilders.*;
  * REST controller for managing MasternodesOnlineSupplementPublic.
  */
 @RestController
-@RequestMapping("/api")
+//@RequestMapping("/api")
+@RequestMapping("/api/public")
 public class MasternodesOnlineSupplementPublicResource {
 
     private final Logger log = LoggerFactory.getLogger(MasternodesOnlineSupplementPublicResource.class);
