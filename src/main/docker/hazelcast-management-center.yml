@@ -1,6 +1,10 @@
 version: '2'
 services:
+<<<<<<< HEAD
     jxjhipstermicroservicetemplate-hazelcast-management-center:
+=======
+    MasternodesOnlineSupplementApi-hazelcast-management-center:
+>>>>>>> 0284cc9f6f3785d76bb0b3ca255ac2b96b28461d
         image: hazelcast/management-center:3.9.3
         ports:
             - 8180:8080

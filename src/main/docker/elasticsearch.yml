@@ -1,9 +1,16 @@
 version: '2'
 services:
+<<<<<<< HEAD
     jxjhipstermicroservicetemplate-elasticsearch:
         image: elasticsearch:5.6.13
         # volumes:
         #     - ~/volumes/jhipster/JxJhipsterMicroserviceTemplate/elasticsearch/:/usr/share/elasticsearch/data/
+=======
+    MasternodesOnlineSupplementApi-elasticsearch:
+        image: elasticsearch:5.6.13
+        # volumes:
+        #     - ~/volumes/jhipster/MasternodesOnlineSupplementApi/elasticsearch/:/usr/share/elasticsearch/data/
+>>>>>>> 0284cc9f6f3785d76bb0b3ca255ac2b96b28461d
         ports:
             - 9200:9200
             - 9300:9300

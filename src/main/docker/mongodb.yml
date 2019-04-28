@@ -1,8 +1,16 @@
 version: '2'
 services:
+<<<<<<< HEAD
     jxjhipstermicroservicetemplate-mongodb:
+=======
+    MasternodesOnlineSupplementApi-mongodb:
+>>>>>>> 0284cc9f6f3785d76bb0b3ca255ac2b96b28461d
         image: mongo:4.0.2
         ports:
             - "27017:27017"
         # volumes:
+<<<<<<< HEAD
         #     - ~/volumes/jhipster/JxJhipsterMicroserviceTemplate/mongodb/:/data/db/
+=======
+        #     - ~/volumes/jhipster/MasternodesOnlineSupplementApi/mongodb/:/data/db/
+>>>>>>> 0284cc9f6f3785d76bb0b3ca255ac2b96b28461d

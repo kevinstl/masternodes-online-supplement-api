@@ -4,7 +4,11 @@ pipeline {
   }
   environment {
     ORG = 'kevinstl'
+<<<<<<< HEAD
     APP_NAME = 'jx-jhipster-microservice-template'
+=======
+    APP_NAME = 'masternodes-online-supplement-api'
+>>>>>>> 0284cc9f6f3785d76bb0b3ca255ac2b96b28461d
     CHARTMUSEUM_CREDS = credentials('jenkins-x-chartmuseum')
   }
   stages {
@@ -60,7 +64,11 @@ pipeline {
       }
       steps {
         container('maven') {
+<<<<<<< HEAD
           dir('charts/jx-jhipster-microservice-template') {
+=======
+          dir('charts/masternodes-online-supplement-api') {
+>>>>>>> 0284cc9f6f3785d76bb0b3ca255ac2b96b28461d
             sh "jx step changelog --version v\$(cat ../../VERSION)"
 
             // release the helm chart

@@ -1,7 +1,13 @@
 {
+<<<<<<< HEAD
     "name": "jx-jhipster-microservice-template",
     "version": "0.0.0",
     "description": "Description for JxJhipsterMicroserviceTemplate",
+=======
+    "name": "masternodes-online-supplement-api",
+    "version": "0.0.0",
+    "description": "Description for MasternodesOnlineSupplementApi",
+>>>>>>> 0284cc9f6f3785d76bb0b3ca255ac2b96b28461d
     "private": true,
     "license": "UNLICENSED",
     "cacheDirectories": [
