@@ -1,0 +1,42 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.cryptocurrencyservices.microservice",
+      "nativeLanguage": "en"
+    },
+    "jhipsterVersion": "5.8.2",
+    "applicationType": "microservice",
+    "baseName": "JxJhipsterMicroserviceTemplate",
+    "packageName": "com.cryptocurrencyservices.microservice",
+    "packageFolder": "com/cryptocurrencyservices/microservice",
+    "serverPort": "8081",
+    "authenticationType": "jwt",
+    "cacheProvider": "hazelcast",
+    "enableHibernateCache": false,
+    "websocket": false,
+    "databaseType": "mongodb",
+    "devDatabaseType": "mongodb",
+    "prodDatabaseType": "mongodb",
+    "searchEngine": "elasticsearch",
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "maven",
+    "enableSwaggerCodegen": true,
+    "jwtSecretKey": "NDRjYmJmMzNkNjQ2N2UxNDAxOTAxZWMwZjFmOWJmOTdiZjliNWVjMTZkZWE3MWZkNjQ2ZDczM2YwZDQwYzA3NjM3ZjYwZjEyYjcwMGQzNDk4MTExYzQ4NDFlMmE3ZmMxYmUwYmE3MGQ4NDk3ZWE0YzY0NTcxZjZkNDRlOTJiNGI=",
+    "testFrameworks": [
+      "cucumber"
+    ],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": true,
+    "clientPackageManager": "npm",
+    "nativeLanguage": "en",
+    "languages": [
+      "en"
+    ],
+    "skipClient": true,
+    "skipUserManagement": true
+  }
+}
