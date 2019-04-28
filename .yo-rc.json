@@ -1,14 +1,24 @@
 {
   "generator-jhipster": {
     "promptValues": {
+<<<<<<< HEAD
       "packageName": "com.cryptocurrencyservices.microservice",
+=======
+      "packageName": "com.cryptocurrencyservices.masternodessuplement.api",
+>>>>>>> 0284cc9f6f3785d76bb0b3ca255ac2b96b28461d
       "nativeLanguage": "en"
     },
     "jhipsterVersion": "5.8.2",
     "applicationType": "microservice",
+<<<<<<< HEAD
     "baseName": "JxJhipsterMicroserviceTemplate",
     "packageName": "com.cryptocurrencyservices.microservice",
     "packageFolder": "com/cryptocurrencyservices/microservice",
+=======
+    "baseName": "MasternodesOnlineSupplementApi",
+    "packageName": "com.cryptocurrencyservices.masternodessuplement.api",
+    "packageFolder": "com/cryptocurrencyservices/masternodessuplement/api",
+>>>>>>> 0284cc9f6f3785d76bb0b3ca255ac2b96b28461d
     "serverPort": "8081",
     "authenticationType": "jwt",
     "cacheProvider": "hazelcast",
@@ -22,7 +32,11 @@
     "serviceDiscoveryType": "eureka",
     "buildTool": "maven",
     "enableSwaggerCodegen": true,
+<<<<<<< HEAD
     "jwtSecretKey": "NDRjYmJmMzNkNjQ2N2UxNDAxOTAxZWMwZjFmOWJmOTdiZjliNWVjMTZkZWE3MWZkNjQ2ZDczM2YwZDQwYzA3NjM3ZjYwZjEyYjcwMGQzNDk4MTExYzQ4NDFlMmE3ZmMxYmUwYmE3MGQ4NDk3ZWE0YzY0NTcxZjZkNDRlOTJiNGI=",
+=======
+    "jwtSecretKey": "NjJmYzZhMmRkZGIyZmUxZDQ0ZGQ4YzdkYzQ2ZWQ3MGRhYTY4ZWViNTE2Mzc4Mzg5OTQzOGIxMzNkYzFmOTA1NTJhZmQ0MmY4MDljMTQyMTc2YTQ4M2ZjMTRjMGIwMDU0NzgwNDRhMGEyNjBhNTA4MDY4MWM2ZTU3MTFmY2ZkMWU=",
+>>>>>>> 0284cc9f6f3785d76bb0b3ca255ac2b96b28461d
     "testFrameworks": [
       "cucumber"
     ],

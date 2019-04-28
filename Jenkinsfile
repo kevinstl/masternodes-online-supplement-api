@@ -4,7 +4,11 @@ pipeline {
   }
   environment {
     ORG = 'kevinstl'
+<<<<<<< HEAD
       APP_NAME = 'jx-jhipster-microservice-template'
+=======
+      APP_NAME = 'masternodes-online-supplement-api'
+>>>>>>> 0284cc9f6f3785d76bb0b3ca255ac2b96b28461d
     CHARTMUSEUM_CREDS = credentials('jenkins-x-chartmuseum')
 
       NEW_VERSION_LOCAL = 'true'
@@ -61,7 +65,11 @@ pipeline {
 //          sh "git checkout master"
                 sh "git checkout ${env.BRANCH_NAME}"
 
+<<<<<<< HEAD
 //                sh "git config remote.origin.url https://github.com/kevinstl/jx-jhipster-microservice-template.git"
+=======
+//                sh "git config remote.origin.url https://github.com/kevinstl/masternodes-online-supplement-api.git"
+>>>>>>> 0284cc9f6f3785d76bb0b3ca255ac2b96b28461d
 //                sh "git config --global credential.helper store"
 //                sh "jx step git credentials"
 //                sh "git pull origin ${env.BRANCH_NAME}"
@@ -86,6 +94,7 @@ pipeline {
       steps {
         container('jx-base') {
 
+<<<<<<< HEAD
             sh 'cat ./charts/jx-jhipster-microservice-template/Chart.yaml'
             sh 'cat ./charts/jx-jhipster-microservice-template/values.yaml'
 
@@ -93,6 +102,15 @@ pipeline {
 
             sh 'cat ./charts/jx-jhipster-microservice-template/Chart.yaml'
             sh 'cat ./charts/jx-jhipster-microservice-template/values.yaml'
+=======
+            sh 'cat ./charts/masternodes-online-supplement-api/Chart.yaml'
+            sh 'cat ./charts/masternodes-online-supplement-api/values.yaml'
+
+          sh "jx step tag --charts-value-repository $DOCKER_REGISTRY/$ORG/$APP_NAME --version \$(cat VERSION)"
+
+            sh 'cat ./charts/masternodes-online-supplement-api/Chart.yaml'
+            sh 'cat ./charts/masternodes-online-supplement-api/values.yaml'
+>>>>>>> 0284cc9f6f3785d76bb0b3ca255ac2b96b28461d
 
         }
       }
@@ -108,6 +126,7 @@ pipeline {
               container('jx-base') {
 
                   sh "ls -al"
+<<<<<<< HEAD
                   sh "mkdir -p /root/.m2/jx-jhipster-microservice-template/node"
                   sh "ln -s /root/.m2/jx-jhipster-microservice-template/node"
                   sh "ls -al /root/.m2/jx-jhipster-microservice-template/node"
@@ -120,6 +139,20 @@ pipeline {
 //                  sh "chmod -R 777 /root/.m2/jx-jhipster-microservice-template/target"
 //                  sh "ln -s /root/.m2/jx-jhipster-microservice-template/target"
 //                  sh "ls -al /root/.m2/jx-jhipster-microservice-template/target"
+=======
+                  sh "mkdir -p /root/.m2/masternodes-online-supplement-api/node"
+                  sh "ln -s /root/.m2/masternodes-online-supplement-api/node"
+                  sh "ls -al /root/.m2/masternodes-online-supplement-api/node"
+
+                  sh "mkdir -p /root/.m2/masternodes-online-supplement-api/node_modules"
+                  sh "ln -s /root/.m2/masternodes-online-supplement-api/node_modules"
+                  sh "ls -al /root/.m2/masternodes-online-supplement-api/node_modules"
+
+//                  sh "mkdir -p /root/.m2/masternodes-online-supplement-api/target"
+//                  sh "chmod -R 777 /root/.m2/masternodes-online-supplement-api/target"
+//                  sh "ln -s /root/.m2/masternodes-online-supplement-api/target"
+//                  sh "ls -al /root/.m2/masternodes-online-supplement-api/target"
+>>>>>>> 0284cc9f6f3785d76bb0b3ca255ac2b96b28461d
 
                   sh "ls -al"
               }
@@ -198,7 +231,11 @@ pipeline {
 
 //        container('jx-base') {
 //
+<<<<<<< HEAD
 //          dir('charts/jx-jhipster-microservice-template') {
+=======
+//          dir('charts/masternodes-online-supplement-api') {
+>>>>>>> 0284cc9f6f3785d76bb0b3ca255ac2b96b28461d
 //            sh "jx step changelog --version v\$(cat ../../VERSION)"
 //
 //            // release the helm chart
@@ -227,7 +264,11 @@ def deployLocal() {
         sh 'echo debug1'
 
         if (NEW_VERSION_LOCAL == 'true') {
+<<<<<<< HEAD
             dir('./charts/jx-jhipster-microservice-template') {
+=======
+            dir('./charts/masternodes-online-supplement-api') {
+>>>>>>> 0284cc9f6f3785d76bb0b3ca255ac2b96b28461d
                 container('jx-base') {
                     sh 'jx step helm release'
                 }
@@ -240,7 +281,11 @@ def deployLocal() {
         dir(envProjectDir) {
             container('jx-base') {
                 sh 'cat ./requirements.yaml'
+<<<<<<< HEAD
                 sh " ./scripts/replace-version.sh . ./requirements.yaml jx-jhipster-microservice-template \$(cat ../../VERSION)"
+=======
+                sh " ./scripts/replace-version.sh . ./requirements.yaml masternodes-online-supplement-api \$(cat ../../VERSION)"
+>>>>>>> 0284cc9f6f3785d76bb0b3ca255ac2b96b28461d
                 sh " ./scripts/add-values-local.sh . ./values.yaml"
 
                 sh 'pwd'
@@ -248,7 +293,11 @@ def deployLocal() {
                 sh 'cat ./requirements.yaml'
                 sh 'jx step helm build'
 //                sh 'jx step helm apply --wait=false'
+<<<<<<< HEAD
                 sh 'jx step helm apply -n jx-jhipster-microservice-template --wait=false'
+=======
+                sh 'jx step helm apply -n masternodes-online-supplement-api --wait=false'
+>>>>>>> 0284cc9f6f3785d76bb0b3ca255ac2b96b28461d
             }
         }
     }
@@ -256,7 +305,11 @@ def deployLocal() {
 
 def promote( env ) {
     container('jx-base') {
+<<<<<<< HEAD
       dir('charts/jx-jhipster-microservice-template') {
+=======
+      dir('charts/masternodes-online-supplement-api') {
+>>>>>>> 0284cc9f6f3785d76bb0b3ca255ac2b96b28461d
         sh "jx step changelog --version v\$(cat ../../VERSION)"
 
         // release the helm chart
