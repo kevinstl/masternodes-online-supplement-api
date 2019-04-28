@@ -2,11 +2,19 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+<<<<<<< HEAD
     <groupId>com.cryptocurrencyservices.microservice</groupId>
     <artifactId>jx-jhipster-microservice-template</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>Jx Jhipster Microservice Template</name>
+=======
+    <groupId>com.cryptocurrencyservices.masternodessuplement.api</groupId>
+    <artifactId>masternodes-online-supplement-api</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>war</packaging>
+    <name>Masternodes Online Supplemente Api</name>
+>>>>>>> 0284cc9f6f3785d76bb0b3ca255ac2b96b28461d
 
     <repositories>
         <!-- jhipster-needle-maven-repository -->
@@ -436,7 +444,11 @@
                 <artifactId>openapi-generator-maven-plugin</artifactId>
             </plugin>
             <!-- jhipster-needle-maven-add-plugin -->
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> 0284cc9f6f3785d76bb0b3ca255ac2b96b28461d
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-deploy-plugin</artifactId>
@@ -508,7 +520,11 @@
                           <image>openjdk:8-jre-alpine</image>
                       </from>
                       <to>
+<<<<<<< HEAD
                           <image>jxjhipstermicroservicetemplate:latest</image>
+=======
+                          <image>MasternodesOnlineSupplementApi:latest</image>
+>>>>>>> 0284cc9f6f3785d76bb0b3ca255ac2b96b28461d
                       </to>
                       <container>
                           <entrypoint>
@@ -684,8 +700,13 @@
                             <configuration>
                                 <inputSpec>${project.basedir}/src/main/resources/swagger/api.yml</inputSpec>
                                 <generatorName>spring</generatorName>
+<<<<<<< HEAD
                                 <apiPackage>com.cryptocurrencyservices.microservice.web.api</apiPackage>
                                 <modelPackage>com.cryptocurrencyservices.microservice.web.api.model</modelPackage>
+=======
+                                <apiPackage>com.cryptocurrencyservices.masternodessuplement.api.web.api</apiPackage>
+                                <modelPackage>com.cryptocurrencyservices.masternodessuplement.api.web.api.model</modelPackage>
+>>>>>>> 0284cc9f6f3785d76bb0b3ca255ac2b96b28461d
                                 <supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
                                 <validateSpec>true</validateSpec>
                                 <configOptions>

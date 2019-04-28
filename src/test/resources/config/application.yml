@@ -17,19 +17,32 @@ eureka:
     client:
         enabled: false
     instance:
+<<<<<<< HEAD
         appname: JxJhipsterMicroserviceTemplate
         instanceId: JxJhipsterMicroserviceTemplate:${spring.application.instance-id:${random.value}}
 
 spring:
     application:
         name: JxJhipsterMicroserviceTemplate
+=======
+        appname: MasternodesOnlineSupplementApi
+        instanceId: MasternodesOnlineSupplementApi:${spring.application.instance-id:${random.value}}
+
+spring:
+    application:
+        name: MasternodesOnlineSupplementApi
+>>>>>>> 0284cc9f6f3785d76bb0b3ca255ac2b96b28461d
     cache:
         type: simple
     data:
         mongodb:
             host: localhost
             port: 0
+<<<<<<< HEAD
             database: JxJhipsterMicroserviceTemplate
+=======
+            database: MasternodesOnlineSupplementApi
+>>>>>>> 0284cc9f6f3785d76bb0b3ca255ac2b96b28461d
         elasticsearch:
             properties:
                 path:
@@ -71,7 +84,11 @@ jhipster:
         authentication:
             jwt:
                 # This token must be encoded using Base64 (you can type `echo 'secret-key'|base64` on your command line)
+<<<<<<< HEAD
                 base64-secret: NDRjYmJmMzNkNjQ2N2UxNDAxOTAxZWMwZjFmOWJmOTdiZjliNWVjMTZkZWE3MWZkNjQ2ZDczM2YwZDQwYzA3NjM3ZjYwZjEyYjcwMGQzNDk4MTExYzQ4NDFlMmE3ZmMxYmUwYmE3MGQ4NDk3ZWE0YzY0NTcxZjZkNDRlOTJiNGI=
+=======
+                base64-secret: NjJmYzZhMmRkZGIyZmUxZDQ0ZGQ4YzdkYzQ2ZWQ3MGRhYTY4ZWViNTE2Mzc4Mzg5OTQzOGIxMzNkYzFmOTA1NTJhZmQ0MmY4MDljMTQyMTc2YTQ4M2ZjMTRjMGIwMDU0NzgwNDRhMGEyNjBhNTA4MDY4MWM2ZTU3MTFmY2ZkMWU=
+>>>>>>> 0284cc9f6f3785d76bb0b3ca255ac2b96b28461d
                 # Token is valid 24 hours
                 token-validity-in-seconds: 86400
     metrics:

@@ -12,5 +12,10 @@ dependencies:
   # !! "alias: preview" must be last entry in dependencies array !!
   # !! Place custom dependencies above !!
 - alias: preview
+<<<<<<< HEAD
   name: jx-jhipster-microservice-template
   repository: file://../jx-jhipster-microservice-template
+=======
+  name: masternodes-online-supplement-api
+  repository: file://../masternodes-online-supplement-api
+>>>>>>> 0284cc9f6f3785d76bb0b3ca255ac2b96b28461d

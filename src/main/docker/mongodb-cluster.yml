@@ -1,16 +1,31 @@
 version: '2'
 services:
+<<<<<<< HEAD
     jxjhipstermicroservicetemplate-mongodb:
         image: mongo:4.0.2
         ports:
             - "27017:27017"
         command: mongos --configdb jxjhipstermicroservicetemplate-mongodb-config
     jxjhipstermicroservicetemplate-mongodb-node:
+=======
+    MasternodesOnlineSupplementApi-mongodb:
+        image: mongo:4.0.2
+        ports:
+            - "27017:27017"
+        command: mongos --configdb MasternodesOnlineSupplementApi-mongodb-config
+    MasternodesOnlineSupplementApi-mongodb-node:
+>>>>>>> 0284cc9f6f3785d76bb0b3ca255ac2b96b28461d
         build:
             context: .
             dockerfile: mongodb/MongoDB.Dockerfile
         command: mongod --replSet rs1 --noprealloc --smallfiles
+<<<<<<< HEAD
     jxjhipstermicroservicetemplate-mongodb-config:
         image: mongo:4.0.2
         container_name: jxjhipstermicroservicetemplate-mongodb-config
+=======
+    MasternodesOnlineSupplementApi-mongodb-config:
+        image: mongo:4.0.2
+        container_name: MasternodesOnlineSupplementApi-mongodb-config
+>>>>>>> 0284cc9f6f3785d76bb0b3ca255ac2b96b28461d
         command: mongod --noprealloc --smallfiles --configsvr --dbpath /data/db

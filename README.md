@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # JxJhipsterMicroserviceTemplate
+=======
+# MasternodesOnlineSupplementApi
+>>>>>>> 0284cc9f6f3785d76bb0b3ca255ac2b96b28461d
 
 This application was generated using JHipster 5.8.2, you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v5.8.2](https://www.jhipster.tech/documentation-archive/v5.8.2).
 
@@ -30,7 +34,11 @@ Refer to [Doing API-First development][] for more details.
 
 ## Building for production
 
+<<<<<<< HEAD
 To optimize the JxJhipsterMicroserviceTemplate application for production, run:
+=======
+To optimize the MasternodesOnlineSupplementApi application for production, run:
+>>>>>>> 0284cc9f6f3785d76bb0b3ca255ac2b96b28461d
 
     ./mvnw -Pprod clean package
 
