@@ -4,7 +4,11 @@
 <configuration scan="true">
     <include resource="org/springframework/boot/logging/logback/base.xml"/>
 
+<<<<<<< HEAD
     <logger name="com.cryptocurrencyservices.microservice" level="INFO"/>
+=======
+    <logger name="com.cryptocurrencyservices.masternodessuplement.api" level="INFO"/>
+>>>>>>> 0284cc9f6f3785d76bb0b3ca255ac2b96b28461d
 
     <logger name="io.github.jhipster" level="WARN"/>
 

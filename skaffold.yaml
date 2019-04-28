@@ -7,7 +7,11 @@ build:
     docker: {}
   tagPolicy:
     envTemplate:
+<<<<<<< HEAD
       template: '{{.DOCKER_REGISTRY}}/kevinstl/jx-jhipster-microservice-template:{{.VERSION}}'
+=======
+      template: '{{.DOCKER_REGISTRY}}/kevinstl/masternodes-online-supplement-api:{{.VERSION}}'
+>>>>>>> 0284cc9f6f3785d76bb0b3ca255ac2b96b28461d
   local: {}
 deploy:
   kubectl: {}
@@ -18,13 +22,24 @@ profiles:
     - docker: {}
     tagPolicy:
       envTemplate:
+<<<<<<< HEAD
         template: '{{.DOCKER_REGISTRY}}/kevinstl/jx-jhipster-microservice-template:{{.DIGEST_HEX}}'
+=======
+        template: '{{.DOCKER_REGISTRY}}/kevinstl/masternodes-online-supplement-api:{{.DIGEST_HEX}}'
+>>>>>>> 0284cc9f6f3785d76bb0b3ca255ac2b96b28461d
     local: {}
   deploy:
     helm:
       releases:
+<<<<<<< HEAD
       - name: jx-jhipster-microservice-template
         chartPath: charts/jx-jhipster-microservice-template
         setValueTemplates:
           image.repository: '{{.DOCKER_REGISTRY}}/kevinstl/jx-jhipster-microservice-template'
+=======
+      - name: masternodes-online-supplement-api
+        chartPath: charts/masternodes-online-supplement-api
+        setValueTemplates:
+          image.repository: '{{.DOCKER_REGISTRY}}/kevinstl/masternodes-online-supplement-api'
+>>>>>>> 0284cc9f6f3785d76bb0b3ca255ac2b96b28461d
           image.tag: '{{.DIGEST_HEX}}'

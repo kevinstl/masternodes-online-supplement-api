@@ -1,6 +1,10 @@
 version: '2'
 services:
+<<<<<<< HEAD
     jxjhipstermicroservicetemplate-sonar:
+=======
+    MasternodesOnlineSupplementApi-sonar:
+>>>>>>> 0284cc9f6f3785d76bb0b3ca255ac2b96b28461d
         image: sonarqube:7.1
         ports:
             - 9001:9000
