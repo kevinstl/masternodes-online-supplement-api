@@ -1,6 +1,6 @@
 version: '2'
 services:
-    MasternodesOnlineSupplementApi-elasticsearch:
+    masternodesonlinesupplementapi-elasticsearch:
         image: elasticsearch:5.6.13
         # volumes:
         #     - ~/volumes/jhipster/MasternodesOnlineSupplementApi/elasticsearch/:/usr/share/elasticsearch/data/

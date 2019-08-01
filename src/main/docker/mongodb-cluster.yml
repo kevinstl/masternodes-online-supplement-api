@@ -1,16 +1,16 @@
 version: '2'
 services:
-    MasternodesOnlineSupplementApi-mongodb:
+    masternodesonlinesupplementapi-mongodb:
         image: mongo:4.0.2
         ports:
             - "27017:27017"
-        command: mongos --configdb MasternodesOnlineSupplementApi-mongodb-config
-    MasternodesOnlineSupplementApi-mongodb-node:
+        command: mongos --configdb masternodesonlinesupplementapi-mongodb-config
+    masternodesonlinesupplementapi-mongodb-node:
         build:
             context: .
             dockerfile: mongodb/MongoDB.Dockerfile
         command: mongod --replSet rs1 --noprealloc --smallfiles
-    MasternodesOnlineSupplementApi-mongodb-config:
+    masternodesonlinesupplementapi-mongodb-config:
         image: mongo:4.0.2
-        container_name: MasternodesOnlineSupplementApi-mongodb-config
+        container_name: masternodesonlinesupplementapi-mongodb-config
         command: mongod --noprealloc --smallfiles --configsvr --dbpath /data/db
