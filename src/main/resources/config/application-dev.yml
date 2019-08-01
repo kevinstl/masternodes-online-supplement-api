@@ -24,7 +24,8 @@ eureka:
         prefer-ip-address: true
     client:
         service-url:
-            defaultZone: http://admin:${jhipster.registry.password}@localhost:8761/eureka/
+#            defaultZone: http://admin:${jhipster.registry.password}@localhost:8761/eureka/
+            defaultZone: http://admin:${jhipster.registry.password}@minikube-easy:30761/eureka/
 
 spring:
     profiles:
@@ -43,7 +44,8 @@ spring:
             indent-output: true
     data:
         mongodb:
-            uri: mongodb://localhost:27017
+#            uri: mongodb://localhost:27017
+            uri: mongodb://minikube-easy:30017
             database: MasternodesOnlineSupplementApi
         elasticsearch:
             properties:
