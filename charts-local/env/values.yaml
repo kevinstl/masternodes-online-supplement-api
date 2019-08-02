@@ -35,6 +35,9 @@ masternodes-online-supplement-api:
   service:
     type: NodePort
     nodePort: 30800
+  security:
+    keycloak:
+      address: http://minikube-easy:30890
 
 
 

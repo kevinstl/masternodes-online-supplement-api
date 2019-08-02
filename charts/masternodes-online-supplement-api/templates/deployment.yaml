@@ -41,6 +41,9 @@ spec:
               name: cryptocurrency-services-api-gateway-secrets
               key: mongo-database-masternodes
 
+        - name: KEYCLOAK_ADDRESS
+          value: "{{ .Values.security.keycloak.address }}"
+
         ports:
         - containerPort: {{ .Values.service.appPort }}
         - containerPort: {{ .Values.service.adminPort }}

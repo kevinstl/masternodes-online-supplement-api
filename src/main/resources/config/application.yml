@@ -158,7 +158,7 @@ security:
 #            scope: openid profile email
         resource:
 #            user-info-uri: http://localhost:9080/auth/realms/jhipster/protocol/openid-connect/userinfo
-            user-info-uri: http://minikube-easy:30890/auth/realms/jhipster/protocol/openid-connect/userinfo
+            user-info-uri: ${KEYCLOAK_ADDRESS}/auth/realms/jhipster/protocol/openid-connect/userinfo
 
 server:
     servlet:
