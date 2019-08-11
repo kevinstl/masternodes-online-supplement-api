@@ -29,6 +29,9 @@ spec:
           value: {{ $pval }}
 {{- end }}
 
+        - name: AUTH_ADDRESS
+          value: "{{ .Values.security.auth.address }}"
+
         - name: SPRING_DATA_MONGODB_URI
           valueFrom:
             secretKeyRef:
@@ -41,8 +44,17 @@ spec:
               name: cryptocurrency-services-api-gateway-secrets
               key: mongo-database-masternodes
 
-        - name: AUTH_ADDRESS
-          value: "{{ .Values.security.auth.address }}"
+        - name: AUTH_CLIENT_ID
+          valueFrom:
+            secretKeyRef:
+              name: cryptocurrency-services-api-gateway-secrets
+              key: auth-client-id
+
+        - name: AUTH_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: cryptocurrency-services-api-gateway-secrets
+              key: auth-client-secret
 
         ports:
         - containerPort: {{ .Values.service.appPort }}
