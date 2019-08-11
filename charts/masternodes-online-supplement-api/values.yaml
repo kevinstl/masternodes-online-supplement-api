@@ -49,3 +49,5 @@ terminationGracePeriodSeconds: 10
 security:
   keycloak:
     address: http://minikube-easy:30890
+  auth:
+    address: https://auth.cryptocurrencyservices.com
