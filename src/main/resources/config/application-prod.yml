@@ -44,15 +44,15 @@ spring:
 #      uri: mongodb://localhost:27017
 #      database: MasternodesOnlineSupplementApi
     data:
-        mongodb:
+      mongodb:
 #            uri: mongodb://localhost:27017
 #            uri: mongodb://${MONGO_HOST}:${MONGO_PORT}
-            uri: mongodb://${SPRING_DATA_MONGODB_URI}
+        uri: mongodb://${SPRING_DATA_MONGODB_URI}
 #            database: MasternodesOnlineSupplementApi
-            database: ${MONGO_DATABASE_MASTERNODES}
-        jest:
-#            uri: http://localhost:9200
-            uri: http://elastisearch-service:9200
+        database: ${MONGO_DATABASE_MASTERNODES}
+      jest:
+  #            uri: http://localhost:9200
+        uri: http://elastisearch-service:9200
     jest:
 #      uri: http://localhost:9200
       uri: http://elastisearch-service:9200
