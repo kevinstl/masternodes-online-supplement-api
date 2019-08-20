@@ -1,7 +1,7 @@
 package com.cryptocurrencyservices.masternodessuplement.api.web.rest;
 
 import com.cryptocurrencyservices.masternodessuplement.api.MasternodesOnlineSupplementApiApp;
-
+import com.cryptocurrencyservices.masternodessuplement.api.config.TestSecurityConfiguration;
 import com.cryptocurrencyservices.masternodessuplement.api.domain.MasternodesOnlineSupplementPublic;
 import com.cryptocurrencyservices.masternodessuplement.api.repository.MasternodesOnlineSupplementPublicRepository;
 import com.cryptocurrencyservices.masternodessuplement.api.repository.search.MasternodesOnlineSupplementPublicSearchRepository;
@@ -10,9 +10,8 @@ import com.cryptocurrencyservices.masternodessuplement.api.service.dto.Masternod
 import com.cryptocurrencyservices.masternodessuplement.api.service.mapper.MasternodesOnlineSupplementPublicMapper;
 import com.cryptocurrencyservices.masternodessuplement.api.web.rest.errors.ExceptionTranslator;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,16 +20,15 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.validation.Validator;
+
 
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Collections;
 import java.util.List;
-
 
 import static com.cryptocurrencyservices.masternodessuplement.api.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -41,13 +39,10 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
- * Test class for the MasternodesOnlineSupplementPublicResource REST controller.
- *
- * @see MasternodesOnlineSupplementPublicResource
+ * Integration tests for the {@link MasternodesOnlineSupplementPublicResource} REST controller.
  */
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = MasternodesOnlineSupplementApiApp.class)
-public class MasternodesOnlineSupplementPublicResourceIntTest {
+@SpringBootTest(classes = {MasternodesOnlineSupplementApiApp.class, TestSecurityConfiguration.class})
+public class MasternodesOnlineSupplementPublicResourceIT {
 
     private static final String DEFAULT_COIN = "AAAAAAAAAA";
     private static final String UPDATED_COIN = "BBBBBBBBBB";
@@ -87,12 +82,15 @@ public class MasternodesOnlineSupplementPublicResourceIntTest {
 
     private static final Integer DEFAULT_GITHUB_COMMITS = 1;
     private static final Integer UPDATED_GITHUB_COMMITS = 2;
+    private static final Integer SMALLER_GITHUB_COMMITS = 1 - 1;
 
     private static final Instant DEFAULT_CREATED_AT = Instant.ofEpochMilli(0L);
     private static final Instant UPDATED_CREATED_AT = Instant.now().truncatedTo(ChronoUnit.MILLIS);
+    private static final Instant SMALLER_CREATED_AT = Instant.ofEpochMilli(-1L);
 
     private static final Instant DEFAULT_PUSHED_AT = Instant.ofEpochMilli(0L);
     private static final Instant UPDATED_PUSHED_AT = Instant.now().truncatedTo(ChronoUnit.MILLIS);
+    private static final Instant SMALLER_PUSHED_AT = Instant.ofEpochMilli(-1L);
 
     private static final String DEFAULT_NOTES = "AAAAAAAAAA";
     private static final String UPDATED_NOTES = "BBBBBBBBBB";
@@ -130,7 +128,7 @@ public class MasternodesOnlineSupplementPublicResourceIntTest {
 
     private MasternodesOnlineSupplementPublic masternodesOnlineSupplementPublic;
 
-    @Before
+    @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
         final MasternodesOnlineSupplementPublicResource masternodesOnlineSupplementPublicResource = new MasternodesOnlineSupplementPublicResource(masternodesOnlineSupplementPublicService);
@@ -168,8 +166,34 @@ public class MasternodesOnlineSupplementPublicResourceIntTest {
             .notes(DEFAULT_NOTES);
         return masternodesOnlineSupplementPublic;
     }
+    /**
+     * Create an updated entity for this test.
+     *
+     * This is a static method, as tests for other entities might also need it,
+     * if they test an entity which requires the current entity.
+     */
+    public static MasternodesOnlineSupplementPublic createUpdatedEntity() {
+        MasternodesOnlineSupplementPublic masternodesOnlineSupplementPublic = new MasternodesOnlineSupplementPublic()
+            .coin(UPDATED_COIN)
+            .price(UPDATED_PRICE)
+            .change(UPDATED_CHANGE)
+            .volume(UPDATED_VOLUME)
+            .marketcap(UPDATED_MARKETCAP)
+            .roi(UPDATED_ROI)
+            .nodes(UPDATED_NODES)
+            .numberRequired(UPDATED_NUMBER_REQUIRED)
+            .minimumWorth(UPDATED_MINIMUM_WORTH)
+            .projectOrigin(UPDATED_PROJECT_ORIGIN)
+            .masternodesOnlineUrl(UPDATED_MASTERNODES_ONLINE_URL)
+            .githubUrl(UPDATED_GITHUB_URL)
+            .githubCommits(UPDATED_GITHUB_COMMITS)
+            .createdAt(UPDATED_CREATED_AT)
+            .pushedAt(UPDATED_PUSHED_AT)
+            .notes(UPDATED_NOTES);
+        return masternodesOnlineSupplementPublic;
+    }
 
-    @Before
+    @BeforeEach
     public void initTest() {
         masternodesOnlineSupplementPublicRepository.deleteAll();
         masternodesOnlineSupplementPublic = createEntity();
@@ -232,6 +256,7 @@ public class MasternodesOnlineSupplementPublicResourceIntTest {
         // Validate the MasternodesOnlineSupplementPublic in Elasticsearch
         verify(mockMasternodesOnlineSupplementPublicSearchRepository, times(0)).save(masternodesOnlineSupplementPublic);
     }
+
 
     @Test
     public void getAllMasternodesOnlineSupplementPublics() throws Exception {
@@ -385,9 +410,9 @@ public class MasternodesOnlineSupplementPublicResourceIntTest {
         // Delete the masternodesOnlineSupplementPublic
         restMasternodesOnlineSupplementPublicMockMvc.perform(delete("/api/masternodes-online-supplement-publics/{id}", masternodesOnlineSupplementPublic.getId())
             .accept(TestUtil.APPLICATION_JSON_UTF8))
-            .andExpect(status().isOk());
+            .andExpect(status().isNoContent());
 
-        // Validate the database is empty
+        // Validate the database contains one less item
         List<MasternodesOnlineSupplementPublic> masternodesOnlineSupplementPublicList = masternodesOnlineSupplementPublicRepository.findAll();
         assertThat(masternodesOnlineSupplementPublicList).hasSize(databaseSizeBeforeDelete - 1);
 

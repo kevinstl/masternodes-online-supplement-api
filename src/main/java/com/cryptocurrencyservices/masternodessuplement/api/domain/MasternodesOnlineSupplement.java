@@ -1,14 +1,11 @@
 package com.cryptocurrencyservices.masternodessuplement.api.domain;
-
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 
+import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.Objects;
 
 /**
  * A MasternodesOnlineSupplement.
@@ -18,8 +15,9 @@ import java.util.Objects;
 public class MasternodesOnlineSupplement implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
+    @org.springframework.data.elasticsearch.annotations.Field(type = FieldType.Keyword)
     private String id;
 
     @Field("coin")
@@ -293,19 +291,15 @@ public class MasternodesOnlineSupplement implements Serializable {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (!(o instanceof MasternodesOnlineSupplement)) {
             return false;
         }
-        MasternodesOnlineSupplement masternodesOnlineSupplement = (MasternodesOnlineSupplement) o;
-        if (masternodesOnlineSupplement.getId() == null || getId() == null) {
-            return false;
-        }
-        return Objects.equals(getId(), masternodesOnlineSupplement.getId());
+        return id != null && id.equals(((MasternodesOnlineSupplement) o).id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(getId());
+        return 31;
     }
 
     @Override

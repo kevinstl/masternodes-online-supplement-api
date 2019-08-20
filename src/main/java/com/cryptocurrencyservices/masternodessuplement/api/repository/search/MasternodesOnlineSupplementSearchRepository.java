@@ -4,7 +4,7 @@ import com.cryptocurrencyservices.masternodessuplement.api.domain.MasternodesOnl
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 
 /**
- * Spring Data Elasticsearch repository for the MasternodesOnlineSupplement entity.
+ * Spring Data Elasticsearch repository for the {@link MasternodesOnlineSupplement} entity.
  */
 public interface MasternodesOnlineSupplementSearchRepository extends ElasticsearchRepository<MasternodesOnlineSupplement, String> {
 }

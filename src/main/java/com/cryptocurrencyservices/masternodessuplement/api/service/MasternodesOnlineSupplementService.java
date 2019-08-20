@@ -17,7 +17,7 @@ import java.util.Optional;
 import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
- * Service Implementation for managing MasternodesOnlineSupplement.
+ * Service Implementation for managing {@link MasternodesOnlineSupplement}.
  */
 @Service
 public class MasternodesOnlineSupplementService {
@@ -39,8 +39,8 @@ public class MasternodesOnlineSupplementService {
     /**
      * Save a masternodesOnlineSupplement.
      *
-     * @param masternodesOnlineSupplementDTO the entity to save
-     * @return the persisted entity
+     * @param masternodesOnlineSupplementDTO the entity to save.
+     * @return the persisted entity.
      */
     public MasternodesOnlineSupplementDTO save(MasternodesOnlineSupplementDTO masternodesOnlineSupplementDTO) {
         log.debug("Request to save MasternodesOnlineSupplement : {}", masternodesOnlineSupplementDTO);
@@ -54,8 +54,8 @@ public class MasternodesOnlineSupplementService {
     /**
      * Get all the masternodesOnlineSupplements.
      *
-     * @param pageable the pagination information
-     * @return the list of entities
+     * @param pageable the pagination information.
+     * @return the list of entities.
      */
     public Page<MasternodesOnlineSupplementDTO> findAll(Pageable pageable) {
         log.debug("Request to get all MasternodesOnlineSupplements");
@@ -67,8 +67,8 @@ public class MasternodesOnlineSupplementService {
     /**
      * Get one masternodesOnlineSupplement by id.
      *
-     * @param id the id of the entity
-     * @return the entity
+     * @param id the id of the entity.
+     * @return the entity.
      */
     public Optional<MasternodesOnlineSupplementDTO> findOne(String id) {
         log.debug("Request to get MasternodesOnlineSupplement : {}", id);
@@ -79,7 +79,7 @@ public class MasternodesOnlineSupplementService {
     /**
      * Delete the masternodesOnlineSupplement by id.
      *
-     * @param id the id of the entity
+     * @param id the id of the entity.
      */
     public void delete(String id) {
         log.debug("Request to delete MasternodesOnlineSupplement : {}", id);
@@ -90,9 +90,9 @@ public class MasternodesOnlineSupplementService {
     /**
      * Search for the masternodesOnlineSupplement corresponding to the query.
      *
-     * @param query the query of the search
-     * @param pageable the pagination information
-     * @return the list of entities
+     * @param query the query of the search.
+     * @param pageable the pagination information.
+     * @return the list of entities.
      */
     public Page<MasternodesOnlineSupplementDTO> search(String query, Pageable pageable) {
         log.debug("Request to search for a page of MasternodesOnlineSupplements for query {}", query);

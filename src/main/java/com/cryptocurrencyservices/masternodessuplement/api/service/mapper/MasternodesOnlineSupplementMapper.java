@@ -6,7 +6,7 @@ import com.cryptocurrencyservices.masternodessuplement.api.service.dto.Masternod
 import org.mapstruct.*;
 
 /**
- * Mapper for the entity MasternodesOnlineSupplement and its DTO MasternodesOnlineSupplementDTO.
+ * Mapper for the entity {@link MasternodesOnlineSupplement} and its DTO {@link MasternodesOnlineSupplementDTO}.
  */
 @Mapper(componentModel = "spring", uses = {})
 public interface MasternodesOnlineSupplementMapper extends EntityMapper<MasternodesOnlineSupplementDTO, MasternodesOnlineSupplement> {

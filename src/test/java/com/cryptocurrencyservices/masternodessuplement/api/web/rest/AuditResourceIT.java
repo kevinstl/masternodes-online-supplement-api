@@ -1,21 +1,22 @@
 package com.cryptocurrencyservices.masternodessuplement.api.web.rest;
 
 import com.cryptocurrencyservices.masternodessuplement.api.MasternodesOnlineSupplementApiApp;
+import com.cryptocurrencyservices.masternodessuplement.api.config.TestSecurityConfiguration;
 import com.cryptocurrencyservices.masternodessuplement.api.config.audit.AuditEventConverter;
 import com.cryptocurrencyservices.masternodessuplement.api.domain.PersistentAuditEvent;
 import com.cryptocurrencyservices.masternodessuplement.api.repository.PersistenceAuditEventRepository;
+
 import com.cryptocurrencyservices.masternodessuplement.api.service.AuditEventService;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.format.support.FormattingConversionService;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
@@ -27,13 +28,10 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
- * Test class for the AuditResource REST controller.
- *
- * @see AuditResource
+ * Integration tests for the {@link AuditResource} REST controller.
  */
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = MasternodesOnlineSupplementApiApp.class)
-public class AuditResourceIntTest {
+@SpringBootTest(classes = {MasternodesOnlineSupplementApiApp.class, TestSecurityConfiguration.class})
+public class AuditResourceIT {
 
     private static final String SAMPLE_PRINCIPAL = "SAMPLE_PRINCIPAL";
     private static final String SAMPLE_TYPE = "SAMPLE_TYPE";
@@ -50,6 +48,7 @@ public class AuditResourceIntTest {
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Autowired
+    @Qualifier("mvcConversionService")
     private FormattingConversionService formattingConversionService;
 
     @Autowired
@@ -59,7 +58,7 @@ public class AuditResourceIntTest {
 
     private MockMvc restAuditMockMvc;
 
-    @Before
+    @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
         AuditEventService auditEventService =
@@ -71,7 +70,7 @@ public class AuditResourceIntTest {
             .setMessageConverters(jacksonMessageConverter).build();
     }
 
-    @Before
+    @BeforeEach
     public void initTest() {
         auditEventRepository.deleteAll();
         auditEvent = new PersistentAuditEvent();
@@ -110,7 +109,7 @@ public class AuditResourceIntTest {
         auditEventRepository.save(auditEvent);
 
         // Generate dates for selecting audits by date, making sure the period will contain the audit
-        String fromDate  = SAMPLE_TIMESTAMP.minusSeconds(SECONDS_PER_DAY).toString().substring(0, 10);
+        String fromDate = SAMPLE_TIMESTAMP.minusSeconds(SECONDS_PER_DAY).toString().substring(0, 10);
         String toDate = SAMPLE_TIMESTAMP.plusSeconds(SECONDS_PER_DAY).toString().substring(0, 10);
 
         // Get the audit

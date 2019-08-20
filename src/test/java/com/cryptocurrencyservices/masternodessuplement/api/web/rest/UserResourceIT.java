@@ -1,6 +1,7 @@
 package com.cryptocurrencyservices.masternodessuplement.api.web.rest;
 
 import com.cryptocurrencyservices.masternodessuplement.api.MasternodesOnlineSupplementApiApp;
+import com.cryptocurrencyservices.masternodessuplement.api.config.TestSecurityConfiguration;
 import com.cryptocurrencyservices.masternodessuplement.api.domain.Authority;
 import com.cryptocurrencyservices.masternodessuplement.api.domain.User;
 import com.cryptocurrencyservices.masternodessuplement.api.repository.UserRepository;
@@ -12,16 +13,14 @@ import com.cryptocurrencyservices.masternodessuplement.api.service.dto.UserDTO;
 import com.cryptocurrencyservices.masternodessuplement.api.service.mapper.UserMapper;
 import com.cryptocurrencyservices.masternodessuplement.api.web.rest.errors.ExceptionTranslator;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cache.CacheManager;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
@@ -35,13 +34,10 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
- * Test class for the UserResource REST controller.
- *
- * @see UserResource
+ * Integration tests for the {@link UserResource} REST controller.
  */
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = MasternodesOnlineSupplementApiApp.class)
-public class UserResourceIntTest {
+@SpringBootTest(classes = {MasternodesOnlineSupplementApiApp.class, TestSecurityConfiguration.class})
+public class UserResourceIT {
 
     private static final String DEFAULT_LOGIN = "johndoe";
 
@@ -92,7 +88,7 @@ public class UserResourceIntTest {
 
     private User user;
 
-    @Before
+    @BeforeEach
     public void setup() {
         cacheManager.getCache(UserRepository.USERS_BY_LOGIN_CACHE).clear();
         cacheManager.getCache(UserRepository.USERS_BY_EMAIL_CACHE).clear();
@@ -124,7 +120,7 @@ public class UserResourceIntTest {
         return user;
     }
 
-    @Before
+    @BeforeEach
     public void initTest() {
         userRepository.deleteAll();
         user = createEntity();

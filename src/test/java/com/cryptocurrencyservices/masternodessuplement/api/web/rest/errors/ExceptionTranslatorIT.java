@@ -1,14 +1,13 @@
 package com.cryptocurrencyservices.masternodessuplement.api.web.rest.errors;
 
 import com.cryptocurrencyservices.masternodessuplement.api.MasternodesOnlineSupplementApiApp;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import com.cryptocurrencyservices.masternodessuplement.api.config.TestSecurityConfiguration;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
@@ -19,13 +18,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
- * Test class for the ExceptionTranslator controller advice.
- *
- * @see ExceptionTranslator
+ * Integration tests {@link ExceptionTranslator} controller advice.
  */
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = MasternodesOnlineSupplementApiApp.class)
-public class ExceptionTranslatorIntTest {
+@SpringBootTest(classes = {MasternodesOnlineSupplementApiApp.class, TestSecurityConfiguration.class})
+public class ExceptionTranslatorIT {
 
     @Autowired
     private ExceptionTranslatorTestController controller;
@@ -38,7 +34,7 @@ public class ExceptionTranslatorIntTest {
 
     private MockMvc mockMvc;
 
-    @Before
+    @BeforeEach
     public void setup() {
         mockMvc = MockMvcBuilders.standaloneSetup(controller)
             .setControllerAdvice(exceptionTranslator)
@@ -63,26 +59,6 @@ public class ExceptionTranslatorIntTest {
              .andExpect(jsonPath("$.fieldErrors.[0].objectName").value("testDTO"))
              .andExpect(jsonPath("$.fieldErrors.[0].field").value("test"))
              .andExpect(jsonPath("$.fieldErrors.[0].message").value("NotNull"));
-    }
-
-    @Test
-    public void testParameterizedError() throws Exception {
-        mockMvc.perform(get("/test/parameterized-error"))
-            .andExpect(status().isBadRequest())
-            .andExpect(content().contentType(MediaType.APPLICATION_PROBLEM_JSON))
-            .andExpect(jsonPath("$.message").value("test parameterized error"))
-            .andExpect(jsonPath("$.params.param0").value("param0_value"))
-            .andExpect(jsonPath("$.params.param1").value("param1_value"));
-    }
-
-    @Test
-    public void testParameterizedError2() throws Exception {
-        mockMvc.perform(get("/test/parameterized-error2"))
-            .andExpect(status().isBadRequest())
-            .andExpect(content().contentType(MediaType.APPLICATION_PROBLEM_JSON))
-            .andExpect(jsonPath("$.message").value("test parameterized error"))
-            .andExpect(jsonPath("$.params.foo").value("foo_value"))
-            .andExpect(jsonPath("$.params.bar").value("bar_value"));
     }
 
     @Test

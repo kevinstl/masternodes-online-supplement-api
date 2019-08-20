@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * A DTO for the MasternodesOnlineSupplement entity.
+ * A DTO for the {@link com.cryptocurrencyservices.masternodessuplement.api.domain.MasternodesOnlineSupplement} entity.
  */
 public class MasternodesOnlineSupplementDTO implements Serializable {
 
