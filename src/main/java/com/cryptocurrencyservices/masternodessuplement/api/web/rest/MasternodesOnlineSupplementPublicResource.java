@@ -1,19 +1,10 @@
 package com.cryptocurrencyservices.masternodessuplement.api.web.rest;
-<<<<<<< HEAD
 import com.cryptocurrencyservices.masternodessuplement.api.service.MasternodesOnlineSupplementService;
 import com.cryptocurrencyservices.masternodessuplement.api.web.rest.errors.BadRequestAlertException;
-import com.cryptocurrencyservices.masternodessuplement.api.web.rest.util.HeaderUtil;
-import com.cryptocurrencyservices.masternodessuplement.api.web.rest.util.PaginationUtil;
 import com.cryptocurrencyservices.masternodessuplement.api.service.dto.MasternodesOnlineSupplementDTO;
-=======
-
-import com.cryptocurrencyservices.masternodessuplement.api.service.MasternodesOnlineSupplementPublicService;
-import com.cryptocurrencyservices.masternodessuplement.api.web.rest.errors.BadRequestAlertException;
-import com.cryptocurrencyservices.masternodessuplement.api.service.dto.MasternodesOnlineSupplementPublicDTO;
 
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
->>>>>>> jhipster_upgrade
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +12,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,9 +21,6 @@ import java.net.URISyntaxException;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.StreamSupport;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * REST controller for managing {@link com.cryptocurrencyservices.masternodessuplement.api.domain.MasternodesOnlineSupplementPublic}.
@@ -47,17 +34,19 @@ public class MasternodesOnlineSupplementPublicResource {
 
     private static final String ENTITY_NAME = "masternodesOnlineSupplementApiMasternodesOnlineSupplementPublic";
 
-<<<<<<< HEAD
-    private final MasternodesOnlineSupplementService masternodesOnlineSupplementPublicService;
-=======
+//<<<<<<< HEAD
+//    private final MasternodesOnlineSupplementService masternodesOnlineSupplementPublicService;
+//=======
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
-    private final MasternodesOnlineSupplementPublicService masternodesOnlineSupplementPublicService;
->>>>>>> jhipster_upgrade
+//    private final MasternodesOnlineSupplementPublicService masternodesOnlineSupplementPublicService;
+    private final MasternodesOnlineSupplementService masternodesOnlineSupplementService;
+//>>>>>>> jhipster_upgrade
 
     public MasternodesOnlineSupplementPublicResource(MasternodesOnlineSupplementService masternodesOnlineSupplementPublicService) {
-        this.masternodesOnlineSupplementPublicService = masternodesOnlineSupplementPublicService;
+//        this.masternodesOnlineSupplementPublicService = masternodesOnlineSupplementPublicService;
+        this.masternodesOnlineSupplementService = masternodesOnlineSupplementPublicService;
     }
 
     /**
@@ -73,7 +62,8 @@ public class MasternodesOnlineSupplementPublicResource {
         if (masternodesOnlineSupplementPublicDTO.getId() != null) {
             throw new BadRequestAlertException("A new masternodesOnlineSupplementPublic cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        MasternodesOnlineSupplementDTO result = masternodesOnlineSupplementPublicService.save(masternodesOnlineSupplementPublicDTO);
+//        MasternodesOnlineSupplementDTO result = masternodesOnlineSupplementPublicService.save(masternodesOnlineSupplementPublicDTO);
+        MasternodesOnlineSupplementDTO result = masternodesOnlineSupplementService.save(masternodesOnlineSupplementPublicDTO);
         return ResponseEntity.created(new URI("/api/masternodes-online-supplement-publics/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -94,7 +84,8 @@ public class MasternodesOnlineSupplementPublicResource {
         if (masternodesOnlineSupplementPublicDTO.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
-        MasternodesOnlineSupplementDTO result = masternodesOnlineSupplementPublicService.save(masternodesOnlineSupplementPublicDTO);
+//        MasternodesOnlineSupplementDTO result = masternodesOnlineSupplementPublicService.save(masternodesOnlineSupplementPublicDTO);
+        MasternodesOnlineSupplementDTO result = masternodesOnlineSupplementService.save(masternodesOnlineSupplementPublicDTO);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, masternodesOnlineSupplementPublicDTO.getId().toString()))
             .body(result);
@@ -111,13 +102,14 @@ public class MasternodesOnlineSupplementPublicResource {
     @GetMapping("/masternodes-online-supplement-publics")
     public ResponseEntity<List<MasternodesOnlineSupplementDTO>> getAllMasternodesOnlineSupplementPublics(Pageable pageable) {
         log.debug("REST request to get a page of MasternodesOnlineSupplementPublics");
-<<<<<<< HEAD
-        Page<MasternodesOnlineSupplementDTO> page = masternodesOnlineSupplementPublicService.findAll(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/masternodes-online-supplement-publics");
-=======
-        Page<MasternodesOnlineSupplementPublicDTO> page = masternodesOnlineSupplementPublicService.findAll(pageable);
+//<<<<<<< HEAD
+//        Page<MasternodesOnlineSupplementDTO> page = masternodesOnlineSupplementPublicService.findAll(pageable);
+//        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/masternodes-online-supplement-publics");
+//=======
+//        Page<MasternodesOnlineSupplementPublicDTO> page = masternodesOnlineSupplementPublicService.findAll(pageable);
+        Page<MasternodesOnlineSupplementDTO> page = masternodesOnlineSupplementService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
->>>>>>> jhipster_upgrade
+//>>>>>>> jhipster_upgrade
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
@@ -130,8 +122,9 @@ public class MasternodesOnlineSupplementPublicResource {
     @GetMapping("/masternodes-online-supplement-publics/{id}")
     public ResponseEntity<MasternodesOnlineSupplementDTO> getMasternodesOnlineSupplementPublic(@PathVariable String id) {
         log.debug("REST request to get MasternodesOnlineSupplementPublic : {}", id);
-        Optional<MasternodesOnlineSupplementDTO> masternodesOnlineSupplementPublicDTO = masternodesOnlineSupplementPublicService.findOne(id);
-        return ResponseUtil.wrapOrNotFound(masternodesOnlineSupplementPublicDTO);
+//        Optional<MasternodesOnlineSupplementDTO> masternodesOnlineSupplementPublicDTO = masternodesOnlineSupplementPublicService.findOne(id);
+        Optional<MasternodesOnlineSupplementDTO> masternodesOnlineSupplementDTO = masternodesOnlineSupplementService.findOne(id);
+        return ResponseUtil.wrapOrNotFound(masternodesOnlineSupplementDTO);
     }
 
     /**
@@ -143,7 +136,8 @@ public class MasternodesOnlineSupplementPublicResource {
     @DeleteMapping("/masternodes-online-supplement-publics/{id}")
     public ResponseEntity<Void> deleteMasternodesOnlineSupplementPublic(@PathVariable String id) {
         log.debug("REST request to delete MasternodesOnlineSupplementPublic : {}", id);
-        masternodesOnlineSupplementPublicService.delete(id);
+//        masternodesOnlineSupplementPublicService.delete(id);
+        masternodesOnlineSupplementService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id)).build();
     }
 
@@ -158,13 +152,13 @@ public class MasternodesOnlineSupplementPublicResource {
     @GetMapping("/_search/masternodes-online-supplement-publics")
     public ResponseEntity<List<MasternodesOnlineSupplementDTO>> searchMasternodesOnlineSupplementPublics(@RequestParam String query, Pageable pageable) {
         log.debug("REST request to search for a page of MasternodesOnlineSupplementPublics for query {}", query);
-<<<<<<< HEAD
-        Page<MasternodesOnlineSupplementDTO> page = masternodesOnlineSupplementPublicService.search(query, pageable);
-        HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/masternodes-online-supplement-publics");
-=======
-        Page<MasternodesOnlineSupplementPublicDTO> page = masternodesOnlineSupplementPublicService.search(query, pageable);
+//<<<<<<< HEAD
+//        Page<MasternodesOnlineSupplementDTO> page = masternodesOnlineSupplementPublicService.search(query, pageable);
+//        HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/masternodes-online-supplement-publics");
+//=======
+        Page<MasternodesOnlineSupplementDTO> page = masternodesOnlineSupplementService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
->>>>>>> jhipster_upgrade
+//>>>>>>> jhipster_upgrade
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
