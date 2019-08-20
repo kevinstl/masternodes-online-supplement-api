@@ -18,5 +18,5 @@ EXPOSE 8080 5701/udp
 
 #ADD *.war app.war
 #ADD ./target/masternodes-online-supplement-api*.war app.war
-ADD ./target/masternodes-online-supplement-api*.war app.jar
+ADD ./target/masternodes-online-supplement-api*.jar app.jar
 
