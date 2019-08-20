@@ -6,7 +6,7 @@
     <groupId>com.cryptocurrencyservices.masternodessuplement.api</groupId>
     <artifactId>masternodes-online-supplement-api</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
     <name>Masternodes Online Supplement Api</name>
 
     <repositories>

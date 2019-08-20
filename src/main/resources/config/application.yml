@@ -129,6 +129,7 @@ spring:
         size: 2
   thymeleaf:
     mode: HTML
+
   security:
     oauth2:
       client:
