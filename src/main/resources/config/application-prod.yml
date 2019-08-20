@@ -20,21 +20,29 @@ logging:
     io.github.jhipster: INFO
 
 eureka:
-<<<<<<< HEAD
-    instance:
-        prefer-ip-address: true
-    client:
-        service-url:
-#            defaultZone: http://admin:${jhipster.registry.password}@localhost:8761/eureka/
-#            defaultZone: http://admin:${jhipster.registry.password}@jhipster-registry-service.:8761/eureka/
-            defaultZone: http://admin:${jhipster.registry.password}@jhipster-registry-service:8761/eureka/
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+#      defaultZone: http://admin:${jhipster.registry.password}@localhost:8761/eureka/
+      defaultZone: http://admin:${jhipster.registry.password}@jhipster-registry-service:8761/eureka/
+
+management:
+  metrics:
+    export:
+      prometheus:
+        enabled: false
 
 spring:
-    devtools:
-        restart:
-            enabled: false
-        livereload:
-            enabled: false
+  devtools:
+    restart:
+      enabled: false
+    livereload:
+      enabled: false
+#  data:
+#    mongodb:
+#      uri: mongodb://localhost:27017
+#      database: MasternodesOnlineSupplementApi
     data:
         mongodb:
 #            uri: mongodb://localhost:27017
@@ -45,48 +53,14 @@ spring:
         jest:
 #            uri: http://localhost:9200
             uri: http://elastisearch-service:9200
-    mail:
-        host: localhost
-        port: 25
-        username:
-        password:
-    thymeleaf:
-        cache: true
-    sleuth:
-        sampler:
-            probability: 1 # report 100% of traces
-    zipkin: # Use the "zipkin" Maven profile to have the Spring Cloud Zipkin dependencies
-        base-url: http://localhost:9411
-=======
-  instance:
-    prefer-ip-address: true
-  client:
-    service-url:
-      defaultZone: http://admin:${jhipster.registry.password}@localhost:8761/eureka/
-
-management:
-  metrics:
-    export:
-      prometheus:
->>>>>>> jhipster_upgrade
-        enabled: false
-
-spring:
-  devtools:
-    restart:
-      enabled: false
-    livereload:
-      enabled: false
-  data:
-    mongodb:
-      uri: mongodb://localhost:27017
-      database: MasternodesOnlineSupplementApi
     jest:
-      uri: http://localhost:9200
+#      uri: http://localhost:9200
+      uri: http://elastisearch-service:9200
   # see https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-nosql.html#boot-features-connecting-to-elasticsearch-jest
   elasticsearch:
     rest:
-      uris: http://localhost:9200
+#      uris: http://localhost:9200
+      uri: http://elastisearch-service:9200
   mail:
     host: localhost
     port: 25
