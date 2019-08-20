@@ -138,28 +138,13 @@ spring:
 # export SECURITY_OAUTH2_CLIENT_CLIENT_ID="jhipster"
 # export SECURITY_OAUTH2_CLIENT_CLIENT_SECRET="38561a05"
 # ===================================================================
-#security:
-#    oauth2:
-#        client:
-#            client-id: internal
-#            client-secret: internal
-#        resource:
-#            user-info-uri: http://localhost:9080/auth/realms/jhipster/protocol/openid-connect/userinfo
-
 security:
     oauth2:
         client:
-#            access-token-uri: http://localhost:9080/auth/realms/jhipster/protocol/openid-connect/token
-#            access-token-uri: http://minikube-easy:30890/auth/realms/jhipster/protocol/openid-connect/token
-#            user-authorization-uri: http://localhost:9080/auth/realms/jhipster/protocol/openid-connect/auth
-#            user-authorization-uri: http://minikube-easy:30890/auth/realms/jhipster/protocol/openid-connect/auth
-            client-id: ${AUTH_CLIENT_ID}
-            client-secret: ${AUTH_CLIENT_SECRET}
-#            scope: openid profile email
+            client-id: internal
+            client-secret: internal
         resource:
-#            user-info-uri: http://localhost:9080/auth/realms/jhipster/protocol/openid-connect/userinfo
-#            user-info-uri: ${KEYCLOAK_ADDRESS}/auth/realms/jhipster/protocol/openid-connect/userinfo
-            user-info-uri: ${AUTH_ADDRESS}/oauth2/default/v1/userinfo
+            user-info-uri: http://localhost:9080/auth/realms/jhipster/protocol/openid-connect/userinfo
 
 server:
     servlet:
