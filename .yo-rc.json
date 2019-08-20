@@ -4,7 +4,7 @@
       "packageName": "com.cryptocurrencyservices.masternodessuplement.api",
       "nativeLanguage": "en"
     },
-    "jhipsterVersion": "5.8.2",
+    "jhipsterVersion": "6.2.0",
     "applicationType": "microservice",
     "baseName": "MasternodesOnlineSupplementApi",
     "packageName": "com.cryptocurrencyservices.masternodessuplement.api",
@@ -37,6 +37,7 @@
       "en"
     ],
     "skipClient": true,
-    "skipUserManagement": true
+    "skipUserManagement": true,
+    "blueprints": []
   }
 }

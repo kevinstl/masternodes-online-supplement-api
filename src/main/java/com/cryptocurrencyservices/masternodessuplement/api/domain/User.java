@@ -4,30 +4,31 @@ import com.cryptocurrencyservices.masternodessuplement.api.config.Constants;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.apache.commons.lang3.StringUtils;
-import javax.validation.constraints.Email;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Locale;
-import java.util.Objects;
 import java.util.Set;
 
 /**
  * A user.
  */
-
 @org.springframework.data.mongodb.core.mapping.Document(collection = "jhi_user")
 @org.springframework.data.elasticsearch.annotations.Document(indexName = "user")
 public class User extends AbstractAuditingEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
+    @org.springframework.data.elasticsearch.annotations.Field(type = FieldType.Keyword)
     private String id;
 
     @NotNull
@@ -51,7 +52,7 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
     private boolean activated = false;
 
-    @Size(min = 2, max = 6)
+    @Size(min = 2, max = 10)
     @Field("lang_key")
     private String langKey;
 
@@ -140,17 +141,15 @@ public class User extends AbstractAuditingEntity implements Serializable {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (!(o instanceof User)) {
             return false;
         }
-
-        User user = (User) o;
-        return !(user.getId() == null || getId() == null) && Objects.equals(getId(), user.getId());
+        return id != null && id.equals(((User) o).id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(getId());
+        return 31;
     }
 
     @Override
