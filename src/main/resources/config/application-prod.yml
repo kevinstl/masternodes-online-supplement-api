@@ -57,7 +57,7 @@ spring:
   elasticsearch:
     rest:
 #      uris: http://localhost:9200
-      uri: http://elasticsearch-service:9200
+      uris: http://elasticsearch-service:9200
   mail:
     host: localhost
     port: 25
